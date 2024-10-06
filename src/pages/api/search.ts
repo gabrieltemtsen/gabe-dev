@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { hotels, Hotel } from '../hotel/dummyData';
+import { hotels, Hotel } from '../../utils/dummyData';
 
 interface SearchQuery {
   destination: string;

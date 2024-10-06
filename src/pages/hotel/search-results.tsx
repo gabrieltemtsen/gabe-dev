@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Hotel } from '../hotel/dummyData';
+import { Hotel } from '../../utils/dummyData';
 
 interface SearchResultsProps {
   results: Hotel[];
