@@ -22,7 +22,7 @@ const SearchResults = () => {
     if (destination && checkIn && checkOut && guests) {
       const fetchData = async () => {
         setLoading(true);
-        
+
         // Set loading time
         const timer = setTimeout(async () => {
           const res = await fetch(`/api/search?destination=${destination}&checkIn=${checkIn}&checkOut=${checkOut}&guests=${guests}`);
@@ -41,7 +41,11 @@ const SearchResults = () => {
   const paginatedResults = results.slice((currentPage - 1) * resultsPerPage, currentPage * resultsPerPage);
 
   const handlePageClick = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
+    setLoading(true);
+    setTimeout(() => {
+      setCurrentPage(pageNumber);
+      setLoading(false);
+    }, 1000); 
   };
 
   const handleBack = () => {
@@ -103,7 +107,7 @@ const SearchResults = () => {
               <div className="flex justify-center items-center mt-8 space-x-4">
                 <button
                   className={`bg-blue-500 text-white p-2 rounded ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
-                  onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                  onClick={() => handlePageClick(Math.max(currentPage - 1, 1))}
                   disabled={currentPage === 1}
                 >
                   Previous
@@ -122,7 +126,7 @@ const SearchResults = () => {
 
                 <button
                   className={`bg-blue-500 text-white p-2 rounded ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
-                  onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+                  onClick={() => handlePageClick(Math.min(currentPage + 1, totalPages))}
                   disabled={currentPage === totalPages}
                 >
                   Next
