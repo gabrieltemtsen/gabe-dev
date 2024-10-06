@@ -274,7 +274,6 @@ export const hotels: Hotel[] = [
     rooms: 75,
   },
 
-  // Other States
   {
     id: 36,
     name: "Protea Hotel Benin City",

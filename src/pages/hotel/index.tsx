@@ -6,7 +6,7 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'; 
 import { format } from 'date-fns';
 
-const HomePage = () => {
+const HotelPage = () => {
   const [destination, setDestination] = useState('');
   const [guests, setGuests] = useState(1);
   const [open, setOpen] = useState(false); 
@@ -45,7 +45,7 @@ const HomePage = () => {
           Find Your Perfect Stay
         </h1>
         <p className="text-lg text-gray-600 mb-8">
-          Search for affordable hotel deals anywhere in the world.
+          Search for affordable hotel deals around Nigeria.
         </p>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="relative">
@@ -62,7 +62,7 @@ const HomePage = () => {
           <div className="relative">
             <input
               type="text"
-              value={`${format(selectionRange.startDate, 'dd/MM/yyyy')} to ${format(selectionRange.endDate, 'dd/MM/yyyy')}`}
+              value={`${format(selectionRange.startDate, 'dd/MM/yyyy')} - ${format(selectionRange.endDate, 'dd/MM/yyyy')}`}
               readOnly
               className="w-full px-4 py-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500  cursor-pointer"
               onClick={() => setOpen(!open)}
@@ -87,7 +87,6 @@ const HomePage = () => {
               onChange={(e) => setGuests(Number(e.target.value))}
               className="w-full px-4 py-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
               min="1"
-              required
               placeholder="Guests"
             />
           </div>
@@ -103,4 +102,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default HotelPage;
