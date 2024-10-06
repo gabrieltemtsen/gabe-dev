@@ -10,39 +10,49 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4">
-      <h2 className="text-4xl font-bold mb-8">Contact Me</h2>
-      <form className="bg-white p-6 rounded-lg shadow-md w-full max-w-md" onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-700">Name</label>
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4">
+      {/* Heading */}
+      <h2 className="text-5xl font-serif font-bold text-foreground mb-10">Contact Me</h2>
+
+      {/* Contact Form */}
+      <form className=" bg-foreground p-8 rounded-lg shadow-lg w-full max-w-lg" onSubmit={handleSubmit}>
+        {/* Name Input */}
+        <div className="mb-6">
+          <label className="block text-gray-700  font-medium">Name</label>
           <input
             type="text"
-            className="w-full px-4 py-2 border border-gray-300 rounded mt-1"
+            className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300"
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             required
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Email</label>
+
+        {/* Email Input */}
+        <div className="mb-6">
+          <label className="block text-gray-700  font-medium">Email</label>
           <input
             type="email"
-            className="w-full px-4 py-2 border border-gray-300 rounded mt-1"
+            className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             required
           />
         </div>
+
+        {/* Message Input */}
         <div className="mb-6">
-          <label className="block text-gray-700">Message</label>
+          <label className="block text-gray-700  font-medium">Message</label>
           <textarea
-            className="w-full px-4 py-2 border border-gray-300 rounded mt-1"
+            className="w-full h-32 px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300"
             value={form.message}
             onChange={(e) => setForm({ ...form, message: e.target.value })}
             required
           ></textarea>
         </div>
-        <button type="submit" className="px-6 py-2 bg-blue-600 text-white rounded">
+
+        {/* Submit Button */}
+        <button type="submit" className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300">
           Send Message
         </button>
       </form>
