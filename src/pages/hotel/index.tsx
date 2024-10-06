@@ -8,7 +8,7 @@ import { format } from 'date-fns';
 
 const HotelPage = () => {
   const [destination, setDestination] = useState('');
-  const [guests, setGuests] = useState(1);
+  const [guests, setGuests] = useState('');
   const [open, setOpen] = useState(false); 
   const [selectionRange, setSelectionRange] = useState({
     startDate: new Date(),
@@ -94,9 +94,10 @@ const HotelPage = () => {
             <input
               type="number"
               value={guests}
-              onChange={(e) => setGuests(Number(e.target.value))}
+              onChange={(e) => setGuests((e.target.value))}
               className="w-full px-4 py-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
               min="1"
+              required
               placeholder="Guests"
             />
           </div>
