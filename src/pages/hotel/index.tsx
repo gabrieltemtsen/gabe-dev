@@ -34,12 +34,22 @@ const HotelPage = () => {
       `/hotel/search-results?destination=${destination}&checkIn=${formattedCheckIn}&checkOut=${formattedCheckOut}&guests=${guests}`
     );
   };
+  const handleBack = () => {
+    router.push('/');
+  };
 
   return (
     <div
       className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center"
       style={{ backgroundImage: "url('/images/hotel-bg.jpg')" }}
     >
+      {/* Back Button */}
+      <button
+            onClick={handleBack}
+            className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6"
+          >
+            &larr; Back
+          </button>
       <div className="bg-white bg-opacity-90 p-10 rounded-lg shadow-lg w-full max-w-lg text-center">
         <h1 className="text-4xl font-extrabold text-gray-800 mb-4">
           Find Your Perfect Stay

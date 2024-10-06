@@ -13,7 +13,7 @@ const About = () => {
 
       {/* Download CV Button */}
       <a
-        href="/GabrielTemtsenCV.pdf"
+        href="/gabeCV.pdf"
         className="px-8 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg transition-all duration-300"
         download
       >
