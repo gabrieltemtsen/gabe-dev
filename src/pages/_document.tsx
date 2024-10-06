@@ -12,7 +12,7 @@ export default function Document() {
         />
         <meta
           property="og:image"
-          content="https://avatars.githubusercontent.com/u/57184013?v=4"
+          content="/gabbyProf.jpeg"
         />
       </Head>
       <body className="antialiased">
