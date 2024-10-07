@@ -1,16 +1,29 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const router = useRouter();
+  const handleBack = () => {
+    router.back();
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission
     console.log('Form submitted', form);
   };
+  
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4">
+       {/* Back Button */}
+       <button
+            onClick={handleBack}
+            className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6"
+          >
+            &larr; Back
+          </button>
       {/* Heading */}
       <h2 className="text-5xl font-serif font-bold text-foreground mb-10">Contact Me</h2>
 

@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+
 const projects = [
   {
     title: 'Moxie Fan Token Alerts',
@@ -18,8 +20,20 @@ const projects = [
 ];
 
 const Projects = () => {
+  const router = useRouter();
+  const handleBack = () => {
+    router.back();
+  };
   return (
     <div className="min-h-screen bg-background p-8">
+      {/* Back Button */}
+      <button
+            onClick={handleBack}
+            className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6"
+          >
+            &larr; Back
+          </button>
+      {/* Heading */}
       {/* Title Section */}
       <h2 className="text-5xl font-serif font-bold text-foreground text-center mb-12">
         Projects

@@ -1,14 +1,28 @@
+import { useRouter } from "next/router";
+
 const About = () => {
+  const router = useRouter();
+  const handleBack = () => {
+    router.back();
+  };
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground">
+       {/* Back Button */}
+       <button
+            onClick={handleBack}
+            className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6"
+          >
+            &larr; Back
+          </button>
       {/* Heading */}
       <h2 className="text-5xl font-serif font-bold mb-6">About Me</h2>
 
       {/* Description */}
       <p className="text-xl font-light max-w-3xl text-center mb-10 leading-relaxed">
-        Hi, I am Gabriel Temtsen, a full-stack developer with expertise in web solutions. I offer a wide
-        range of services, from development to web fixes and AI integrations. With years of experience,
-        I bring your ideas to life through effective and scalable solutions.
+      Hi, I am Gabriel Temtsen, a full-stack developer passionate about building innovative
+       web solutions and contributing to open-source projects. I specialize in a wide range of services, 
+       including full-stack development, web fixes, and AI integrations. With years of experience and a commitment to scalable, 
+      effective solutions, I bring your ideas to life while continuously learning and growing within the open-source community.
       </p>
 
       {/* Download CV Button */}
