@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Home = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-background text-foreground">
+    <div className="flex flex-col items-center m-3 justify-center h-screen bg-background text-foreground">
       {/* Name Header */}
       <h1 className="text-6xl font-serif font-bold mb-4">Gabriel Temtsen</h1>
 
