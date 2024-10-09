@@ -4,12 +4,12 @@ const projects = [
   {
     title: 'Moxie Fan Token Alerts',
     description: 'A project providing Fan Token-related alerts on Farcaster using Convex and Next.js.',
-    link: '#',
+    link: '#/',
   },
   {
     title: 'OnchainVoter',
     description: 'A voting DApp built with Next.js, Wagmi, and Rainbowkit.',
-    link: '#',
+    link: '#/',
   },
   {
     title: 'Hotel Reservation',
