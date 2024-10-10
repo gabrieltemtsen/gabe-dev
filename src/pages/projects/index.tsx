@@ -24,17 +24,18 @@ const Projects = () => {
   const handleBack = () => {
     router.back();
   };
+
   return (
     <div className="min-h-screen bg-background p-8">
       {/* Back Button */}
       <button
-            onClick={handleBack}
-            className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6"
-          >
-            &larr; Back
-          </button>
+        onClick={handleBack}
+        className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6 transition duration-300 ease-in-out hover:shadow-md"
+      >
+        &larr; Back
+      </button>
+
       {/* Heading */}
-      {/* Title Section */}
       <h2 className="text-5xl font-serif font-bold text-foreground text-center mb-12">
         Projects
       </h2>
@@ -42,25 +43,23 @@ const Projects = () => {
       {/* Projects Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
         {projects.map((project, index) => (
-          <div
+          <a
             key={index}
-            className="bg-white dark:bg-foreground p-6 rounded-xl shadow-subtle hover:shadow-deep transition-shadow duration-300"
+            href={project.link}
+            className="block bg-white dark:bg-foreground p-6 rounded-xl shadow-subtle hover:shadow-deep transition-shadow duration-300 transform hover:scale-105"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             <h3 className="text-2xl font-bold text-primary mb-4 font-sans">
               {project.title}
             </h3>
-            <p className="text-gray-600  mb-6 leading-relaxed">
+            <p className="text-gray-600 mb-6 leading-relaxed">
               {project.description}
             </p>
-            <a
-              href={project.link}
-              className="text-accent font-medium hover:text-blue-600 transition-colors duration-200"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <button className="bg-accent text-white py-2 px-4 rounded-lg transition duration-300 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
               View Project &rarr;
-            </a>
-          </div>
+            </button>
+          </a>
         ))}
       </div>
     </div>
