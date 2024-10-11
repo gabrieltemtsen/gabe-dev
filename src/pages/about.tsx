@@ -19,9 +19,9 @@ const About = () => {
 
       {/* Description */}
       <p className="text-xl font-light max-w-3xl text-center mb-10 leading-relaxed">
-      Hi, I am Gabriel Temtsen, a full-stack developer passionate about building innovative
+      Hi, I&apos;m Gabriel Temtsen, a full-stack developer passionate about building innovative
        web solutions and contributing to open-source projects. I specialize in a wide range of services, 
-       including full-stack development, web fixes, and AI integrations. With years of experience and a commitment to scalable, 
+       including full-stack development, web fixes, and AI integrations. With 3 years of experience and a commitment to scalable, 
       effective solutions, I bring your ideas to life while continuously learning and growing within the open-source community.
       </p>
 
