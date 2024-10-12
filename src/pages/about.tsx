@@ -22,7 +22,7 @@ const About = () => {
       Hi, I&apos;m Gabriel Temtsen, a full-stack developer passionate about building innovative
        web solutions and contributing to open-source projects. I specialize in a wide range of services, 
        including full-stack development, web fixes, and AI integrations. With 3 years of experience and a commitment to scalable, 
-      effective solutions, I bring your ideas to life while continuously learning and growing within the open-source community.
+      effective solutions, I&apos;ll bring your ideas to life while continuously learning and growing within the open-source community.
       </p>
 
       {/* Download CV Button */}
