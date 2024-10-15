@@ -423,7 +423,14 @@ export const hotels: Hotel[] = [
   },
   {
     id: 100,
-    name: "Parkviewers Team Hotels",
+    name: "Park viewers Team Hotel",
+    location: "jos",
+    availability: { from: "2024-11-01", to: "2024-12-31" },
+    rooms: 90,
+  },
+  {
+    id: 110,
+    name: "Crispan Hotel",
     location: "jos",
     availability: { from: "2024-11-01", to: "2024-12-31" },
     rooms: 90,
