@@ -442,6 +442,13 @@ export const hotels: Hotel[] = [
     availability: { from: "2024-11-01", to: "2024-12-31" },
     rooms: 10,
   },
+  {
+    id: 111,
+    name: "Grand villa Hotel",
+    location: "jos",
+    availability: { from: "2024-11-01", to: "2024-12-31" },
+    rooms: 110,
+  },
   
 
 ];
