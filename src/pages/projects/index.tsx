@@ -4,19 +4,23 @@ const projects = [
   {
     title: 'Moxie Fan Token Alerts',
     description: 'A project providing Fan Token-related alerts on Farcaster using Convex and Next.js.',
-    link: '#/',
+    link: 'https://warpcast.com/gabrieltemtsen/0x08b009ed',
   },
   {
     title: 'OnchainVoter',
     description: 'A voting DApp built with Next.js, Wagmi, and Rainbowkit.',
-    link: '#/',
+    link: 'https://onchain-voter-xyz.vercel.app/',
   },
   {
     title: 'Hotel Reservation',
     description: 'A hotel reservation app built with Next.js, Tailwind CSS, and TypeScript.',
     link: '/hotel',
   },
-  // Add more projects here
+  {
+    title: 'Memora AI',
+    description: 'An AI powered system for managing your memories beyond death.',
+    link: 'https://memora-ai.vercel.app/',
+  },
 ];
 
 const Projects = () => {
