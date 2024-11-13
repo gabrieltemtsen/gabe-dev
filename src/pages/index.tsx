@@ -41,7 +41,7 @@ const Home = () => {
         <input
           className="pp-YT55ZEG5M3UGW px-6 py-3 bg-yellow-500 text-white rounded-lg mb-4 cursor-pointer hover:bg-yellow-600 transition-colors"
           type="submit"
-          value="Tip me"
+          value="Tip Gabe"
         />
 
         {/* Payment Methods Image */}
