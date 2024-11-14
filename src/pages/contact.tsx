@@ -6,6 +6,8 @@ const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
   const router = useRouter();
 
+  //TODO add mailgun or postmark for real messaging
+
   const handleBack = () => {
     router.back();
   };
@@ -46,7 +48,7 @@ const Contact = () => {
       {/* Success Message */}
       {submitted && (
         <div className="mb-6 text-green-600 font-medium">
-          Your message has been sent! I&apos;ll get back to you soon.
+          Your message has been sent! I&apos;ll get back to you soon. Thankyou!
         </div>
       )}
 
