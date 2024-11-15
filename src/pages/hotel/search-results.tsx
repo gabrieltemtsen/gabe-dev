@@ -6,6 +6,8 @@ interface SearchResultsProps {
   results: Hotel[];
 }
 
+//TODO move hotels to a new file
+
 const SearchResults = () => {
   const router = useRouter();
   const { destination, checkIn, checkOut, guests } = router.query;
