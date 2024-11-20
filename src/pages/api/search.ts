@@ -2,6 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { hotels, Hotel } from '../../utils/dummyData';
 
+//TODO: operation to search for hotels with convex
 interface SearchQuery {
   destination: string;
   checkIn: string;
