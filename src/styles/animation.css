@@ -1,0 +1,18 @@
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  @keyframes blink {
+    50% { border-color: transparent }
+  }
+  
+  .typing-effect {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 2px solid #4ade80;
+    white-space: nowrap;
+    animation: 
+      typing 3.5s steps(40, end),
+      blink .75s step-end infinite;
+  }
