@@ -2,6 +2,15 @@
 import Link from 'next/link';
 
 const Home = () => {
+
+  const maintainance = true
+  if (maintainance) {
+    return (
+      <div>
+        Hello, Application is under maintenance please come back shortly!
+      </div>
+    )
+  }
   return (
     <div className="flex flex-col items-center m-3 justify-center h-screen bg-background text-foreground">
       {/* Name Header */}
