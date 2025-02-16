@@ -21,6 +21,11 @@ const projects = [
     description: 'An AI powered system for managing your memories beyond death.',
     link: 'https://memora-ai.vercel.app/',
   },
+  {
+    title: 'Footy App',
+    description: 'A Football mini app and web app built with Next.js, Tailwind CSS, and TypeScript. availble both on web, and on farcaster',
+    link: 'https://fc-footy.vercel.app/',
+  },
 ];
 
 const Projects = () => {

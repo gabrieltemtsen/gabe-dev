@@ -26,19 +26,19 @@ const Home = () => {
       {/* Navigation Buttons */}
       <div className="flex space-x-6 mb-10">
         <Link href="/about">
-          <a className="px-6 py-3 bg-blue-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-600 hover:shadow-lg transition-all duration-300">
+          <span className="px-6 py-3 bg-blue-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-600 hover:shadow-lg transition-all duration-300">
             About
-          </a>
+          </span>
         </Link>
         <Link href="/projects">
-          <a className="px-6 py-3 bg-green-500 text-white font-medium rounded-lg shadow-md hover:bg-green-600 hover:shadow-lg transition-all duration-300">
+          <span className="px-6 py-3 bg-green-500 text-white font-medium rounded-lg shadow-md hover:bg-green-600 hover:shadow-lg transition-all duration-300">
             Projects
-          </a>
+          </span>
         </Link>
         <Link href="/contact">
-          <a className="px-6 py-3 bg-gray-800 text-white font-medium rounded-lg shadow-md hover:bg-gray-900 hover:shadow-lg transition-all duration-300">
+          <span className="px-6 py-3 bg-gray-800 text-white font-medium rounded-lg shadow-md hover:bg-gray-900 hover:shadow-lg transition-all duration-300">
             Contact
-          </a>
+          </span>
         </Link>
       </div>
 
