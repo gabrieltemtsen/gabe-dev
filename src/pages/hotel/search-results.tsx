@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Hotel } from '../../utils/dummyData';
+import ThemeToggle from '@/components/ThemeToggle';
 
 interface SearchResultsProps {
   results: Hotel[];
@@ -55,7 +56,10 @@ const SearchResults = () => {
   };
 
   return (
-    <div className="p-8">
+    <div className="relative p-8 bg-white dark:bg-gray-900 min-h-screen">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       {loading ? (
         // Dot Loader
         <div className="flex justify-center items-center h-screen">
@@ -70,22 +74,22 @@ const SearchResults = () => {
           {/* Back Button */}
           <button
             onClick={handleBack}
-            className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6"
+            className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white"
           >
             &larr; Back
           </button>
 
-          <h2 className="text-3xl font-bold mb-6">Search Results for `{destination}`</h2>
+          <h2 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-100">Search Results for `{destination}`</h2>
 
           {results.length === 0 ? (
             // No results found message
-            <div className="text-center text-lg text-gray-600">
+            <div className="text-center text-lg text-gray-600 dark:text-gray-300">
               <p className="mb-4">
                 Sorry, no results found for `{destination}`. Please check back later or reach out to us for a customized reservation.
               </p>
               <button
                 onClick={handleBack}
-                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
               >
                 Go Back
               </button>
@@ -94,7 +98,7 @@ const SearchResults = () => {
             <div>
               <div className="grid grid-cols-1 gap-6">
                 {paginatedResults.map((hotel) => (
-                  <div key={hotel.id} className="border p-6 rounded-lg shadow-md">
+                  <div key={hotel.id} className="border p-6 rounded-lg shadow-md dark:bg-gray-800">
                     <h3 className="text-xl font-semibold">{hotel.name}</h3>
                     <p>Location: {hotel.location}</p>
                     <p>Rooms available: {hotel.rooms}</p>
@@ -107,8 +111,8 @@ const SearchResults = () => {
 
               {/* Pagination */}
               <div className="flex justify-center items-center mt-8 space-x-4">
-                <button
-                  className={`bg-blue-500 text-white p-2 rounded ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  <button
+                    className={`bg-blue-500 text-white p-2 rounded ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''} dark:bg-blue-600`}
                   onClick={() => handlePageClick(Math.max(currentPage - 1, 1))}
                   disabled={currentPage === 1}
                 >
@@ -120,14 +124,14 @@ const SearchResults = () => {
                   <button
                     key={pageNumber}
                     onClick={() => handlePageClick(pageNumber)}
-                    className={`p-2 rounded ${currentPage === pageNumber ? 'bg-blue-600 text-white' : 'bg-gray-300'}`}
+                    className={`p-2 rounded ${currentPage === pageNumber ? 'bg-blue-600 text-white' : 'bg-gray-300 dark:bg-gray-700 dark:text-white'}`}
                   >
                     {pageNumber}
                   </button>
                 ))}
 
-                <button
-                  className={`bg-blue-500 text-white p-2 rounded ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  <button
+                    className={`bg-blue-500 text-white p-2 rounded ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''} dark:bg-blue-600`}
                   onClick={() => handlePageClick(Math.min(currentPage + 1, totalPages))}
                   disabled={currentPage === totalPages}
                 >
