@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const About = () => {
   const router = useRouter();
@@ -6,7 +7,10 @@ const About = () => {
     router.back();
   };
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground">
+    <div className="relative flex flex-col items-center justify-center min-h-screen bg-background text-foreground">
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
        {/* Back Button */}
        <button
             onClick={handleBack}

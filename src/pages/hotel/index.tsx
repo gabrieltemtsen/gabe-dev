@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import ThemeToggle from '@/components/ThemeToggle';
 import { DateRangePicker } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css'; 
@@ -40,9 +41,12 @@ const HotelPage = () => {
 
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center"
+      className="relative flex flex-col items-center justify-center min-h-screen bg-cover bg-center"
       style={{ backgroundImage: "url('/images/hotel-bg.jpg')" }}
     >
+      <div className="absolute top-4 right-4">
+        <ThemeToggle />
+      </div>
       {/* Back Button */}
       <button
             onClick={handleBack}
@@ -50,11 +54,11 @@ const HotelPage = () => {
           >
             &larr; Back
           </button>
-      <div className="bg-white bg-opacity-90 p-10 rounded-lg shadow-lg w-full max-w-lg text-center">
-        <h1 className="text-4xl font-extrabold text-gray-800 mb-4">
+      <div className="bg-white dark:bg-gray-800 bg-opacity-90 p-10 rounded-lg shadow-lg w-full max-w-lg text-center">
+        <h1 className="text-4xl font-extrabold text-gray-800 dark:text-gray-100 mb-4">
           Find Your Perfect Stay
         </h1>
-        <p className="text-lg text-gray-600 mb-8">
+        <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
           Search for affordable hotel deals around Nigeria.
         </p>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -64,7 +68,7 @@ const HotelPage = () => {
               value={destination}
               onChange={(e) => setDestination(e.target.value)}
               placeholder="Enter destination (state)"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-700"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 text-gray-700 dark:bg-gray-700 dark:text-gray-100"
               required
             />
           </div>
@@ -74,7 +78,7 @@ const HotelPage = () => {
               type="text"
               value={`${format(selectionRange.startDate, 'dd/MM/yyyy')} - ${format(selectionRange.endDate, 'dd/MM/yyyy')}`}
               readOnly
-              className="w-full px-4 py-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500  cursor-pointer"
+              className="w-full px-4 py-3 border text-black dark:text-gray-100 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500  cursor-pointer dark:bg-gray-700"
               onClick={() => setOpen(!open)}
               placeholder="Select Date Range"
             />
@@ -95,7 +99,7 @@ const HotelPage = () => {
               type="number"
               value={guests}
               onChange={(e) => setGuests((e.target.value))}
-              className="w-full px-4 py-3 border text-black border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-3 border text-black dark:text-gray-100 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
               min="1"
               required
               placeholder="Guests"
@@ -103,7 +107,7 @@ const HotelPage = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white font-semibold py-3 rounded-lg hover:bg-blue-600 transition-colors"
+            className="w-full bg-blue-500 text-white font-semibold py-3 rounded-lg hover:bg-blue-600 transition-colors dark:bg-blue-600 dark:hover:bg-blue-700"
           >
             Search Hotels
           </button>
