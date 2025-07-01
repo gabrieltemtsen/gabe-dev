@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import ThemeToggle from '@/components/ThemeToggle';
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -35,9 +34,6 @@ const Contact = () => {
 
   return (
     <div className="relative min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col items-center justify-center px-4">
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
-      </div>
       {/* Back Button */}
       <button
         onClick={handleBack}

@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import ThemeToggle from '@/components/ThemeToggle';
+import DigitalRain from '@/components/DigitalRain';
 
 const Home = () => {
   const maintenance = false;
@@ -18,9 +18,7 @@ const Home = () => {
 
   return (
     <div className="relative flex flex-col items-center justify-center h-screen bg-gradient-to-br from-blue-50 via-white to-gray-100 text-gray-800 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700">
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
-      </div>
+      <DigitalRain />
       {/* Name Header */}
       <h1 className="text-5xl font-extrabold text-blue-700 mb-4">Gabriel Temtsen</h1>
 

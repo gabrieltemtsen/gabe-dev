@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Hotel } from '../../utils/dummyData';
-import ThemeToggle from '@/components/ThemeToggle';
 
 interface SearchResultsProps {
   results: Hotel[];
@@ -57,9 +56,6 @@ const SearchResults = () => {
 
   return (
     <div className="relative p-8 bg-white dark:bg-gray-900 min-h-screen">
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
-      </div>
       {loading ? (
         // Dot Loader
         <div className="flex justify-center items-center h-screen">
