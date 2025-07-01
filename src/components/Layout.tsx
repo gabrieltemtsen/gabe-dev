@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import ThemeToggle from './ThemeToggle';
 import { ReactNode } from 'react';
+import ThemeToggle from './ThemeToggle';
+import AuroraBackground from './AuroraBackground';
 
 interface LayoutProps {
   children: ReactNode;
@@ -9,7 +10,8 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const year = new Date().getFullYear();
   return (
-    <div className="min-h-screen flex flex-col bg-background text-foreground">
+    <div className="relative min-h-screen flex flex-col bg-background text-foreground">
+      <AuroraBackground />
       <header className="bg-white dark:bg-gray-900 shadow-md">
         <div className="container mx-auto flex items-center justify-between p-4">
           <Link href="/" className="text-2xl font-bold">
