@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import ThemeToggle from '@/components/ThemeToggle';
 import { DateRangePicker } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css'; 
@@ -44,9 +43,6 @@ const HotelPage = () => {
       className="relative flex flex-col items-center justify-center min-h-screen bg-cover bg-center"
       style={{ backgroundImage: "url('/images/hotel-bg.jpg')" }}
     >
-      <div className="absolute top-4 right-4">
-        <ThemeToggle />
-      </div>
       {/* Back Button */}
       <button
             onClick={handleBack}
