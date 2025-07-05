@@ -33,7 +33,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col items-center justify-center px-4">
+    <div className="relative min-h-screen flex flex-col items-center justify-center px-4 bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Back Button */}
       <button
         onClick={handleBack}
@@ -54,7 +54,7 @@ const Contact = () => {
 
       {/* Contact Form */}
       <form
-        className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-lg"
+        className="glass p-8 rounded-lg w-full max-w-lg"
         onSubmit={handleSubmit}
       >
         {/* Name Input */}

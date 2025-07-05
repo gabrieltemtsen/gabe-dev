@@ -50,7 +50,7 @@ const HotelPage = () => {
           >
             &larr; Back
           </button>
-      <div className="bg-white dark:bg-gray-800 bg-opacity-90 p-10 rounded-lg shadow-lg w-full max-w-lg text-center">
+      <div className="glass p-10 rounded-lg w-full max-w-lg text-center">
         <h1 className="text-4xl font-extrabold text-gray-800 dark:text-gray-100 mb-4">
           Find Your Perfect Stay
         </h1>
