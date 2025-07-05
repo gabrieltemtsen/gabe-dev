@@ -10,9 +10,9 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const year = new Date().getFullYear();
   return (
-    <div className="relative min-h-screen flex flex-col bg-background text-foreground">
+    <div className="relative min-h-screen flex flex-col bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground">
       <AuroraBackground />
-      <header className="bg-white dark:bg-gray-900 shadow-md">
+      <header className="glass shadow-md sticky top-0 z-20">
         <div className="container mx-auto flex items-center justify-between p-4">
           <Link href="/" className="text-2xl font-bold">
             Gabe Dev
@@ -34,7 +34,7 @@ const Layout = ({ children }: LayoutProps) => {
         </div>
       </header>
       <main className="flex-grow">{children}</main>
-      <footer className="bg-gray-100 dark:bg-gray-800 text-center p-4 text-sm">
+      <footer className="glass text-center p-4 text-sm mt-auto">
         &copy; {year} Gabriel Temtsen. All rights reserved.
       </footer>
     </div>

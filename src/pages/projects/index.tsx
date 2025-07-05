@@ -35,7 +35,7 @@ const Projects = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background p-8">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-8">
       {/* Back Button */}
       <button
         onClick={handleBack}
@@ -55,7 +55,7 @@ const Projects = () => {
           <a
             key={index}
             href={project.link}
-            className="block bg-white dark:bg-foreground p-6 rounded-xl shadow-subtle hover:shadow-deep transition-shadow duration-300 transform hover:scale-105"
+            className="glass block p-6 rounded-xl shadow-subtle hover:shadow-deep transition-shadow duration-300 transform hover:scale-105"
             target="_blank"
             rel="noopener noreferrer"
           >

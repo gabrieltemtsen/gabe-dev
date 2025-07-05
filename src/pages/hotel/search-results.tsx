@@ -55,7 +55,7 @@ const SearchResults = () => {
   };
 
   return (
-    <div className="relative p-8 bg-white dark:bg-gray-900 min-h-screen">
+    <div className="relative p-8 min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {loading ? (
         // Dot Loader
         <div className="flex justify-center items-center h-screen">
@@ -94,7 +94,7 @@ const SearchResults = () => {
             <div>
               <div className="grid grid-cols-1 gap-6">
                 {paginatedResults.map((hotel) => (
-                  <div key={hotel.id} className="border p-6 rounded-lg shadow-md dark:bg-gray-800">
+                  <div key={hotel.id} className="glass border p-6 rounded-lg shadow-md">
                     <h3 className="text-xl font-semibold">{hotel.name}</h3>
                     <p>Location: {hotel.location}</p>
                     <p>Rooms available: {hotel.rooms}</p>
