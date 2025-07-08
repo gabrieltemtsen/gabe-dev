@@ -1,30 +1,38 @@
+/* eslint-disable @next/next/no-img-element */
 import { useRouter } from "next/router";
 
 const projects = [
   {
     title: 'Moxie Fan Token Alerts',
-    description: 'A project providing Fan Token-related alerts on Farcaster using Convex and Next.js.',
+    description:
+      'A project providing Fan Token-related alerts on Farcaster using Convex and Next.js.',
     link: 'https://warpcast.com/gabrieltemtsen/0x08b009ed',
+    image: 'https://via.placeholder.com/600x400.png?text=Moxie+Alerts',
   },
   {
     title: 'OnchainVoter',
     description: 'A voting DApp built with Next.js, Wagmi, and Rainbowkit.',
     link: 'https://onchain-voter-xyz.vercel.app/',
+    image: 'https://via.placeholder.com/600x400.png?text=OnchainVoter',
   },
   {
     title: 'Hotel Reservation',
     description: 'A hotel reservation app built with Next.js, Tailwind CSS, and TypeScript.',
     link: '/hotel',
+    image: 'https://via.placeholder.com/600x400.png?text=Hotel+Reservation',
   },
   {
     title: 'Memora AI',
     description: 'An AI powered system for managing your memories beyond death.',
     link: 'https://memora-ai.vercel.app/',
+    image: 'https://via.placeholder.com/600x400.png?text=Memora+AI',
   },
   {
     title: 'Footy App',
-    description: 'A Football mini app and web app built with Next.js, Tailwind CSS, and TypeScript. availble both on web, and on farcaster',
+    description:
+      'A Football mini app and web app built with Next.js, Tailwind CSS, and TypeScript. availble both on web, and on farcaster',
     link: 'https://fc-footy.vercel.app/',
+    image: 'https://via.placeholder.com/600x400.png?text=Footy+App',
   },
 ];
 
@@ -35,7 +43,8 @@ const Projects = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 p-8">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <div className="max-w-7xl mx-auto p-8 sm:p-12">
       {/* Back Button */}
       <button
         onClick={handleBack}
@@ -50,26 +59,32 @@ const Projects = () => {
       </h2>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
         {projects.map((project, index) => (
           <a
             key={index}
             href={project.link}
-            className="glass block p-6 rounded-xl shadow-subtle hover:shadow-deep transition-shadow duration-300 transform hover:scale-105"
+            className="glass flex flex-col p-6 rounded-xl shadow-subtle hover:shadow-deep transition-transform duration-300 hover:scale-105"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h3 className="text-2xl font-bold text-primary mb-4 font-sans">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-40 object-cover rounded-md mb-4"
+            />
+            <h3 className="text-2xl font-bold text-primary mb-2 font-sans">
               {project.title}
             </h3>
-            <p className="text-gray-600 mb-6 leading-relaxed">
+            <p className="text-gray-600 mb-4 leading-relaxed flex-grow">
               {project.description}
             </p>
-            <button className="bg-accent text-white py-2 px-4 rounded-lg transition duration-300 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            <span className="mt-auto inline-block bg-accent text-white py-2 px-4 rounded-lg transition duration-300 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
               View Project &rarr;
-            </button>
+            </span>
           </a>
         ))}
+      </div>
       </div>
     </div>
   );
