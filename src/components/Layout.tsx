@@ -3,6 +3,7 @@ import { ReactNode, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import AuroraBackground from './AuroraBackground';
+import UniverseBackground from './UniverseBackground';
 
 interface LayoutProps {
   children: ReactNode;
@@ -13,6 +14,7 @@ const Layout = ({ children }: LayoutProps) => {
   const [open, setOpen] = useState(false);
   return (
     <div className="relative min-h-screen flex flex-col bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground">
+      <UniverseBackground />
       <AuroraBackground />
       <header className="glass shadow-md sticky top-0 z-20">
         <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
