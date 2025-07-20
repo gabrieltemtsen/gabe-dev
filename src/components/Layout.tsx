@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { ReactNode, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
 import AuroraBackground from './AuroraBackground';
 import UniverseBackground from './UniverseBackground';
 
@@ -33,9 +32,6 @@ const Layout = ({ children }: LayoutProps) => {
             </Link>
           </nav>
           <div className="flex items-center space-x-4 ml-auto">
-            <div className="hidden sm:block">
-              <ThemeToggle />
-            </div>
             <button
               aria-label="Toggle Menu"
               onClick={() => setOpen(!open)}
@@ -58,9 +54,6 @@ const Layout = ({ children }: LayoutProps) => {
                 Contact
               </Link>
             </nav>
-            <div className="pt-2">
-              <ThemeToggle />
-            </div>
           </div>
         )}
       </header>
