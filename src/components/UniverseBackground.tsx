@@ -4,11 +4,10 @@ import React, { useEffect, useRef } from 'react';
  * Star-filled purple universe background used behind the main layout.
  */
 interface Star {
-  x: number;
-  y: number;
-  r: number;
-  vx: number;
-  vy: number;
+  radius: number;
+  angle: number;
+  size: number;
+  speed: number;
 }
 
 const UniverseBackground: React.FC = () => {
@@ -30,30 +29,27 @@ const UniverseBackground: React.FC = () => {
     window.addEventListener('resize', resize);
 
     const createStar = (): Star => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1.5 + 0.5,
-      vx: (Math.random() - 0.5) * 0.2,
-      vy: (Math.random() - 0.5) * 0.2,
+      radius: Math.random() * Math.min(canvas.width, canvas.height) * 0.5,
+      angle: Math.random() * Math.PI * 2,
+      size: Math.random() * 1.5 + 0.5,
+      speed: Math.random() * 0.001 + 0.0005,
     });
 
-    const stars: Star[] = Array.from({ length: 150 }, createStar);
+    const stars: Star[] = Array.from({ length: 200 }, createStar);
 
     let animationId: number;
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = '#fff';
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
       stars.forEach((s) => {
-        s.x += s.vx;
-        s.y += s.vy;
-
-        if (s.x < 0) s.x = canvas.width;
-        if (s.x > canvas.width) s.x = 0;
-        if (s.y < 0) s.y = canvas.height;
-        if (s.y > canvas.height) s.y = 0;
+        s.angle += s.speed;
+        const x = cx + Math.cos(s.angle) * s.radius;
+        const y = cy + Math.sin(s.angle) * s.radius;
 
         ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.arc(x, y, s.size, 0, Math.PI * 2);
         ctx.fill();
       });
       animationId = requestAnimationFrame(draw);

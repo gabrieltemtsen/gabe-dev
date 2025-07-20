@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="en">
+    <Html lang="en" className="dark">
         <Head>
         <meta name="description" content="Gabriel Temtsen | Fullstack Developer" key="desc" />
         <meta property="og:title" content="Gabe Dev | Open Source Dev" />
