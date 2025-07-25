@@ -7,32 +7,32 @@ const projects = [
     description:
       'A project providing Fan Token-related alerts on Farcaster using Convex and Next.js.',
     link: 'https://warpcast.com/gabrieltemtsen/0x08b009ed',
-    image: 'https://via.placeholder.com/600x400.png?text=Moxie+Alerts',
+    image: '/projects/moxie.svg',
   },
   {
     title: 'OnchainVoter',
     description: 'A voting DApp built with Next.js, Wagmi, and Rainbowkit.',
     link: 'https://onchain-voter-xyz.vercel.app/',
-    image: 'https://via.placeholder.com/600x400.png?text=OnchainVoter',
+    image: '/projects/onchain.svg',
   },
   {
     title: 'Hotel Reservation',
     description: 'A hotel reservation app built with Next.js, Tailwind CSS, and TypeScript.',
     link: '/hotel',
-    image: 'https://via.placeholder.com/600x400.png?text=Hotel+Reservation',
+    image: '/projects/hotel.svg',
   },
   {
     title: 'Memora AI',
     description: 'An AI powered system for managing your memories beyond death.',
     link: 'https://memora-ai.vercel.app/',
-    image: 'https://via.placeholder.com/600x400.png?text=Memora+AI',
+    image: '/projects/memora.svg',
   },
   {
     title: 'Footy App',
     description:
       'A Football mini app and web app built with Next.js, Tailwind CSS, and TypeScript. availble both on web, and on farcaster',
     link: 'https://fc-footy.vercel.app/',
-    image: 'https://via.placeholder.com/600x400.png?text=Footy+App',
+    image: '/projects/footy.svg',
   },
 ];
 
