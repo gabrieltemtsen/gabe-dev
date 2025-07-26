@@ -43,7 +43,7 @@ const Projects = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground">
       <div className="max-w-7xl mx-auto p-8 sm:p-12">
       {/* Back Button */}
       <button
@@ -73,10 +73,10 @@ const Projects = () => {
               alt={project.title}
               className="w-full h-40 object-cover rounded-md mb-4"
             />
-            <h3 className="text-2xl font-bold text-primary mb-2 font-sans">
+            <h3 className="text-2xl font-bold text-primary dark:text-gray-200 mb-2 font-sans">
               {project.title}
             </h3>
-            <p className="text-gray-600 mb-4 leading-relaxed flex-grow">
+            <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed flex-grow">
               {project.description}
             </p>
             <span className="mt-auto inline-block bg-accent text-white py-2 px-4 rounded-lg transition duration-300 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
