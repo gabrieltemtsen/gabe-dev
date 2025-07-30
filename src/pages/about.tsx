@@ -1,4 +1,7 @@
 import { useRouter } from "next/router";
+import localFont from "next/font/local";
+
+const geist = localFont({ src: "./fonts/GeistVF.woff" });
 
 const About = () => {
   const router = useRouter();
@@ -6,7 +9,7 @@ const About = () => {
     router.back();
   };
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground">
+    <div className={`${geist.className} relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground`}>
       <button
         onClick={handleBack}
         className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6"
@@ -16,7 +19,7 @@ const About = () => {
       <div className="glass p-10 rounded-xl flex flex-col items-center w-full max-w-3xl">
         <h2 className="text-5xl font-serif font-bold mb-6">About Me</h2>
         <p className="text-xl font-light text-center mb-10 leading-relaxed">
-          Hi, I&apos;m a full-stack developer passionate about building innovative web solutions and contributing to open-source projects. I specialize in a wide range of services, including full-stack development, web fixes, and AI integrations. With 3 years of experience and a commitment to scalable, effective solutions, I&apos;ll bring your ideas to life while continuously learning and growing within the open-source community.
+          Hey there, I&apos;m Gabe. Thanks for dropping by! I love building full-stack apps, fixing up websites, and weaving AI into new ideas. I&apos;ve spent the last few years sharpening my skills and I&apos;m always learning something new. If you have a project in mind, let&apos;s make it happen together.
         </p>
         <a
           href="/gabeCV.pdf"
