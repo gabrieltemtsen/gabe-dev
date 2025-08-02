@@ -6,6 +6,10 @@ Welcome to my portfolio! Here you'll find information about my projects, skills,
 
 I am a passionate developer with experience in various technologies and a strong desire to learn and grow in the field of software development.
 
+## Features
+
+- Toggle between light and dark themes to view the portfolio in your preferred style.
+
 ## Projects
 
 ## Skills

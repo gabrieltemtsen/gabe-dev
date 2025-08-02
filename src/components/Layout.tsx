@@ -3,6 +3,7 @@ import { ReactNode, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import AuroraBackground from './AuroraBackground';
 import UniverseBackground from './UniverseBackground';
+import ThemeToggle from './ThemeToggle';
 
 interface LayoutProps {
   children: ReactNode;
@@ -32,6 +33,7 @@ const Layout = ({ children }: LayoutProps) => {
             </Link>
           </nav>
           <div className="flex items-center space-x-4 ml-auto">
+            <ThemeToggle />
             <button
               aria-label="Toggle Menu"
               onClick={() => setOpen(!open)}
