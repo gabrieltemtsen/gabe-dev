@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -103,6 +104,28 @@ const Contact = () => {
           Send Message
         </button>
       </form>
+
+      {/* Social Links */}
+      <div className="flex space-x-6 mt-8 text-gray-700 dark:text-gray-200">
+        <a
+          href="https://github.com"
+          className="hover:text-gray-900 dark:hover:text-white transition-colors"
+        >
+          <Github className="w-6 h-6" />
+        </a>
+        <a
+          href="https://linkedin.com"
+          className="hover:text-gray-900 dark:hover:text-white transition-colors"
+        >
+          <Linkedin className="w-6 h-6" />
+        </a>
+        <a
+          href="mailto:contact@example.com"
+          className="hover:text-gray-900 dark:hover:text-white transition-colors"
+        >
+          <Mail className="w-6 h-6" />
+        </a>
+      </div>
     </div>
   );
 };
