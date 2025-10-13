@@ -22,10 +22,11 @@ const Home = () => {
       <div className="glass p-10 rounded-xl flex flex-col items-center w-full max-w-2xl">
         <h1 className="text-5xl font-extrabold mb-4 text-foreground">Gabriel Temtsen</h1>
         <p className="text-lg mb-10 text-foreground/80">Full Stack Developer | Open Source Contributor</p>
-        <div className="flex space-x-6 mb-10">
+        <div className="flex flex-wrap justify-center gap-6 mb-10">
           <Link href="/about" className="px-6 py-3 bg-blue-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-600 transition duration-300">About</Link>
           <Link href="/projects" className="px-6 py-3 bg-green-500 text-white font-medium rounded-lg shadow-md hover:bg-green-600 transition duration-300">Projects</Link>
           <Link href="/contact" className="px-6 py-3 bg-gray-800 text-white font-medium rounded-lg shadow-md hover:bg-gray-900 transition duration-300">Contact</Link>
+          <Link href="/github" className="px-6 py-3 bg-purple-600 text-white font-medium rounded-lg shadow-md hover:bg-purple-700 transition duration-300">GitHub</Link>
         </div>
         <form
           action="https://www.paypal.com/ncp/payment/YT55ZEG5M3UGW"
