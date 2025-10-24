@@ -1,44 +1,36 @@
-import { useRouter } from "next/router";
 import Link from "next/link";
 import localFont from "next/font/local";
+import { GetStaticProps } from "next";
+import { useRouter } from "next/router";
+
+type GithubStat = {
+  label: string;
+  value: string;
+};
+
+type HighlightedProject = {
+  name: string;
+  description: string;
+  link: string;
+  stars: number;
+  language?: string | null;
+};
+
+type GithubPageProps = {
+  stats: GithubStat[];
+  highlightedProjects: HighlightedProject[];
+  topTechnologies: string[];
+  profileUrl: string;
+};
 
 const geist = localFont({ src: "./fonts/GeistVF.woff" });
 
-const stats = [
-  { label: "Public Repositories", value: "45+" },
-  { label: "Open Source Contributions", value: "120+" },
-  { label: "Followers", value: "300+" },
-  { label: "GitHub Stars", value: "150+" },
-];
-
-const highlightedProjects = [
-  {
-    name: "AI Travel Planner",
-    description: "Personalized itinerary builder leveraging AI-driven recommendations.",
-    link: "https://github.com/gabetem/ai-travel-planner",
-  },
-  {
-    name: "Dev Portfolio",
-    description: "Responsive portfolio showcasing projects, writing, and contact forms.",
-    link: "https://github.com/gabetem/portfolio",
-  },
-  {
-    name: "Next.js Starter Kit",
-    description: "Production-ready Next.js starter with Tailwind CSS and TypeScript.",
-    link: "https://github.com/gabetem/next-starter",
-  },
-];
-
-const topTechnologies = [
-  "TypeScript",
-  "Next.js",
-  "Node.js",
-  "React",
-  "Tailwind CSS",
-  "Prisma",
-];
-
-const GithubSummary = () => {
+const GithubSummary = ({
+  stats,
+  highlightedProjects,
+  topTechnologies,
+  profileUrl,
+}: GithubPageProps) => {
   const router = useRouter();
 
   const handleBack = () => {
@@ -63,8 +55,9 @@ const GithubSummary = () => {
             A quick snapshot of Gabe&apos;s GitHub activity, highlighted projects, and favorite technologies.
           </p>
           <Link
-            href="https://github.com/gabetem"
+            href={profileUrl}
             target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-lg shadow hover:bg-gray-800 transition"
           >
             Visit GitHub Profile
@@ -91,38 +84,160 @@ const GithubSummary = () => {
         <section>
           <h2 className="text-3xl font-semibold mb-6">Highlighted Projects</h2>
           <div className="grid gap-6 md:grid-cols-3">
-            {highlightedProjects.map((project) => (
-              <div key={project.name} className="glass p-6 rounded-lg shadow flex flex-col">
-                <h3 className="text-2xl font-semibold mb-2">{project.name}</h3>
-                <p className="text-sm text-foreground/80 flex-1">{project.description}</p>
-                <Link
-                  href={project.link}
-                  target="_blank"
-                  className="mt-4 inline-flex items-center gap-2 text-blue-600 hover:text-blue-500"
-                >
-                  View Repository
-                </Link>
-              </div>
-            ))}
+            {highlightedProjects.length > 0 ? (
+              highlightedProjects.map((project) => (
+                <div key={project.name} className="glass p-6 rounded-lg shadow flex flex-col">
+                  <h3 className="text-2xl font-semibold mb-2">{project.name}</h3>
+                  <p className="text-sm text-foreground/80 flex-1">{project.description}</p>
+                  <div className="mt-4 flex items-center justify-between text-sm text-foreground/70">
+                    <div>
+                      {project.language ? (
+                        <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/60 dark:bg-gray-800/60 text-xs uppercase tracking-wide">
+                          {project.language}
+                        </span>
+                      ) : (
+                        <span className="text-xs uppercase tracking-wide">Language N/A</span>
+                      )}
+                    </div>
+                    <span className="font-medium">⭐ {project.stars}</span>
+                  </div>
+                  <Link
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-4 inline-flex items-center gap-2 text-blue-600 hover:text-blue-500"
+                  >
+                    View Repository
+                  </Link>
+                </div>
+              ))
+            ) : (
+              <p className="text-foreground/70">No highlighted repositories available.</p>
+            )}
           </div>
         </section>
 
         <section>
           <h2 className="text-3xl font-semibold mb-6">Top Technologies</h2>
           <div className="flex flex-wrap gap-3">
-            {topTechnologies.map((tech) => (
-              <span
-                key={tech}
-                className="px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm font-medium"
-              >
-                {tech}
-              </span>
-            ))}
+            {topTechnologies.length > 0 ? (
+              topTechnologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm font-medium"
+                >
+                  {tech}
+                </span>
+              ))
+            ) : (
+              <p className="text-foreground/70">No technologies available at the moment.</p>
+            )}
           </div>
         </section>
       </div>
     </div>
   );
+};
+
+export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
+  const username = "gabrieltemtsen";
+  const profileUrl = `https://github.com/${username}`;
+
+  const headers: HeadersInit = {};
+  if (process.env.GITHUB_TOKEN) {
+    headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+  }
+
+  try {
+    const [userResponse, reposResponse] = await Promise.all([
+      fetch(`https://api.github.com/users/${username}`, { headers }),
+      fetch(`https://api.github.com/users/${username}/repos?per_page=100`, {
+        headers,
+      }),
+    ]);
+
+    if (!userResponse.ok) {
+      throw new Error(`Failed to fetch user profile: ${userResponse.status}`);
+    }
+
+    if (!reposResponse.ok) {
+      throw new Error(`Failed to fetch repositories: ${reposResponse.status}`);
+    }
+
+    const user = await userResponse.json();
+    const repos: Array<{
+      name: string;
+      description: string | null;
+      html_url: string;
+      stargazers_count: number;
+      language: string | null;
+      fork: boolean;
+    }> = await reposResponse.json();
+
+    const formatNumber = (value: number) => new Intl.NumberFormat().format(value);
+
+    const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
+
+    const stats: GithubStat[] = [
+      { label: "Public Repositories", value: formatNumber(user.public_repos) },
+      { label: "Followers", value: formatNumber(user.followers) },
+      { label: "Following", value: formatNumber(user.following) },
+      { label: "Total Stars", value: formatNumber(totalStars) },
+    ];
+
+    const highlightedProjects: HighlightedProject[] = repos
+      .filter((repo) => !repo.fork)
+      .sort((a, b) => b.stargazers_count - a.stargazers_count)
+      .slice(0, 3)
+      .map((repo) => ({
+        name: repo.name,
+        description: repo.description ?? "No description provided.",
+        link: repo.html_url,
+        stars: repo.stargazers_count,
+        language: repo.language,
+      }));
+
+    const languageCount = repos.reduce<Record<string, number>>((acc, repo) => {
+      if (repo.language) {
+        acc[repo.language] = (acc[repo.language] ?? 0) + 1;
+      }
+      return acc;
+    }, {});
+
+    const topTechnologies = Object.entries(languageCount)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 6)
+      .map(([language]) => language);
+
+    return {
+      props: {
+        stats,
+        highlightedProjects,
+        topTechnologies,
+        profileUrl,
+      },
+      revalidate: 3600,
+    };
+  } catch (error) {
+    console.error("Failed to load GitHub data", error);
+
+    const fallbackStats: GithubStat[] = [
+      { label: "Public Repositories", value: "-" },
+      { label: "Followers", value: "-" },
+      { label: "Following", value: "-" },
+      { label: "Total Stars", value: "-" },
+    ];
+
+    return {
+      props: {
+        stats: fallbackStats,
+        highlightedProjects: [],
+        topTechnologies: [],
+        profileUrl,
+      },
+      revalidate: 600,
+    };
+  }
 };
 
 export default GithubSummary;
