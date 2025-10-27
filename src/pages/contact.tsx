@@ -4,7 +4,11 @@ import { Github, Linkedin, Mail } from 'lucide-react';
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<
+    | { type: 'success' | 'error'; message: string }
+    | null
+  >(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
   //TODO add mailgun or postmark for real messaging
@@ -13,24 +17,44 @@ const Contact = () => {
     router.back();
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Simple email validation check
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(form.email)) {
-      alert('Please enter a valid email address');
-      return;
+    setIsSubmitting(true);
+    setStatus(null);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to send message.');
+      }
+
+      setStatus({
+        type: 'success',
+        message: data.message || "Your message has been sent! I'll get back to you soon.",
+      });
+      setForm({ name: '', email: '', message: '' });
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : 'An unexpected error occurred. Please try again later.';
+      setStatus({
+        type: 'error',
+        message,
+      });
+    } finally {
+      setIsSubmitting(false);
     }
-
-    // Handle form submission
-    console.log('Form submitted', form);
-
-    // Simulate successful form submission
-    setSubmitted(true);
-
-    // Reset the form
-    setForm({ name: '', email: '', message: '' });
   };
 
   return (
@@ -46,10 +70,14 @@ const Contact = () => {
       {/* Heading */}
       <h2 className="text-5xl font-serif font-bold text-gray-800 dark:text-gray-100 mb-10">Contact Me</h2>
 
-      {/* Success Message */}
-      {submitted && (
-        <div className="mb-6 text-green-600 font-medium">
-          Your message has been sent! I&apos;ll get back to you soon. Thankyou!
+      {/* Submission Status */}
+      {status && (
+        <div
+          className={`mb-6 font-medium ${
+            status.type === 'success' ? 'text-green-600' : 'text-red-600'
+          }`}
+        >
+          {status.message}
         </div>
       )}
 
@@ -99,9 +127,10 @@ const Contact = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 dark:bg-blue-500 dark:hover:bg-blue-600"
+          className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-blue-500 dark:hover:bg-blue-600"
+          disabled={isSubmitting}
         >
-          Send Message
+          {isSubmitting ? 'Sending...' : 'Send Message'}
         </button>
       </form>
 
@@ -120,7 +149,7 @@ const Contact = () => {
           <Linkedin className="w-6 h-6" />
         </a>
         <a
-          href="mailto:contact@example.com"
+          href="mailto:gabrieltemtsen@gmail.com"
           className="hover:text-gray-900 dark:hover:text-white transition-colors"
         >
           <Mail className="w-6 h-6" />
