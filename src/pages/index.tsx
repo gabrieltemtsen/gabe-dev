@@ -1,59 +1,190 @@
-/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
+import {
+  ArrowUpRight,
+  Briefcase,
+  Github,
+  Mail,
+  Palette,
+  Rocket,
+  Sparkles,
+} from 'lucide-react';
 import DigitalRain from '@/components/DigitalRain';
 
 const Home = () => {
-  const maintenance = false;
+  const stats = [
+    { label: 'Projects shipped', value: '40+' },
+    { label: 'Open source commits', value: '1k+' },
+    { label: 'Happy collaborators', value: '50+' },
+  ];
 
-  if (maintenance) {
-    return (
-      <div className="flex items-center justify-center h-screen bg-gray-100 text-gray-700">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">👷‍♂️ Were Under Maintenance</h1>
-          <p className="text-lg mb-6">Please check back shortly. Thanks for your patience!</p>
-        </div>
-      </div>
-    );
-  }
+  const services = [
+    {
+      icon: <Rocket className="w-5 h-5" />,
+      title: 'Product-ready builds',
+      description: 'From design system to deployment with predictable delivery.',
+    },
+    {
+      icon: <Palette className="w-5 h-5" />,
+      title: 'Delightful interfaces',
+      description: 'Clean, high-converting experiences with modern motion & polish.',
+    },
+    {
+      icon: <Sparkles className="w-5 h-5" />,
+      title: 'AI-infused workflows',
+      description: 'Practical AI integrations that feel native and trustworthy.',
+    },
+  ];
+
+  const focus = ['Next.js', 'TypeScript', 'Design Systems', 'AI Assistants', 'Edge Compute'];
 
   return (
-    <div className="relative flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <div className="relative overflow-hidden">
       <DigitalRain />
-      <div className="glass p-10 rounded-xl flex flex-col items-center w-full max-w-2xl">
-        <h1 className="text-5xl font-extrabold mb-4 text-foreground">Gabriel Temtsen</h1>
-        <p className="text-lg mb-10 text-foreground/80">Full Stack Developer | Open Source Contributor</p>
-        <div className="flex flex-wrap justify-center gap-6 mb-10">
-          <Link href="/about" className="px-6 py-3 bg-blue-500 text-white font-medium rounded-lg shadow-md hover:bg-blue-600 transition duration-300">About</Link>
-          <Link href="/projects" className="px-6 py-3 bg-green-500 text-white font-medium rounded-lg shadow-md hover:bg-green-600 transition duration-300">Projects</Link>
-          <Link href="/contact" className="px-6 py-3 bg-gray-800 text-white font-medium rounded-lg shadow-md hover:bg-gray-900 transition duration-300">Contact</Link>
-          <Link href="/github" className="px-6 py-3 bg-purple-600 text-white font-medium rounded-lg shadow-md hover:bg-purple-700 transition duration-300">GitHub</Link>
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-black opacity-90" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.25),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(14,165,233,0.2),transparent_40%),radial-gradient(circle_at_30%_80%,rgba(236,72,153,0.2),transparent_40%)]" />
+
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-8 py-16 lg:py-24 text-white">
+        <div className="mb-10 flex flex-wrap items-center gap-3">
+          <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium">
+            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+            Accepting new collaborations
+          </span>
+          <span className="text-sm text-white/70">Building standout digital products with a human touch.</span>
         </div>
-        <form
-          action="https://www.paypal.com/ncp/payment/YT55ZEG5M3UGW"
-          method="post"
-          target="_top"
-          className="glass flex flex-col items-center p-6 w-full max-w-md"
-        >
-          <button
-            type="submit"
-            className="px-6 py-3 bg-yellow-500 text-white font-semibold rounded-lg shadow hover:bg-yellow-600 transition duration-300"
-          >
-            Tip Gabe 💛
-          </button>
-          <img
-            src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg"
-            alt="Payment Methods"
-            className="mt-4 w-32"
-          />
-          <div className="mt-2 text-gray-800 dark:text-gray-200 text-sm">
-            Powered by{' '}
-            <img
-              src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg"
-              alt="PayPal"
-              className="inline-block h-4"
-            />
+
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+          <div className="space-y-8">
+            <div className="space-y-3">
+              <p className="text-sm uppercase tracking-[0.2em] text-indigo-200">Gabriel Temtsen</p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                Modern full-stack experiences that feel crafted, fast, and alive.
+              </h1>
+              <p className="text-lg text-white/70">
+                I ship end-to-end products with sharp UI, resilient architecture, and thoughtful micro-interactions. Let&apos;s
+                create something memorable together.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/projects"
+                className="inline-flex items-center gap-2 rounded-full bg-white text-slate-900 px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5 hover:shadow-xl"
+              >
+                View projects
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-white hover:bg-white/5"
+              >
+                Let&apos;s talk
+                <Mail className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/github"
+                className="inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-2 text-sm font-semibold text-white/80 transition hover:-translate-y-0.5 hover:border-white hover:text-white"
+              >
+                GitHub
+                <Github className="h-4 w-4" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              {stats.map((stat) => (
+                <div key={stat.label} className="glass rounded-xl p-4 shadow-lg shadow-indigo-500/10">
+                  <p className="text-2xl font-bold">{stat.value}</p>
+                  <p className="text-sm text-white/70">{stat.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </form>
+
+          <div className="glass relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 shadow-2xl shadow-fuchsia-500/20">
+            <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-pink-500/40 blur-3xl" />
+            <div className="absolute -left-10 -bottom-10 h-40 w-40 rounded-full bg-indigo-500/30 blur-3xl" />
+
+            <div className="relative space-y-8">
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl font-semibold">What I&apos;m shipping</h2>
+                <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/80">Live updates</span>
+              </div>
+
+              <div className="grid gap-4">
+                {services.map((service) => (
+                  <div
+                    key={service.title}
+                    className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm hover:border-white/30 transition"
+                  >
+                    <div className="rounded-full bg-white/10 p-3 text-indigo-100">{service.icon}</div>
+                    <div className="space-y-1">
+                      <p className="font-semibold">{service.title}</p>
+                      <p className="text-sm text-white/70">{service.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-gradient-to-r from-white/5 via-white/10 to-white/5 p-5">
+                <div className="flex items-center gap-3 text-sm text-white/80">
+                  <Briefcase className="h-4 w-4" />
+                  Currently focusing on
+                </div>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {focus.map((item) => (
+                    <span key={item} className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-16 grid gap-6 lg:grid-cols-[2fr_1fr]">
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl shadow-indigo-900/30">
+            <div className="flex items-center gap-3 text-sm font-semibold text-indigo-100">
+              <Sparkles className="h-4 w-4" />
+              Featured updates
+            </div>
+            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-white/10 bg-slate-900/50 p-4">
+                <p className="text-sm text-white/70">Recent win</p>
+                <p className="mt-2 text-lg font-semibold">Built a lightning-fast booking flow with server actions.</p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-slate-900/50 p-4">
+                <p className="text-sm text-white/70">Community</p>
+                <p className="mt-2 text-lg font-semibold">Maintaining open-source utilities powering thousands of requests.</p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-slate-900/50 p-4">
+                <p className="text-sm text-white/70">Performance</p>
+                <p className="mt-2 text-lg font-semibold">Ship experiences that score 90+ Lighthouse out of the box.</p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-slate-900/50 p-4">
+                <p className="text-sm text-white/70">Collaboration</p>
+                <p className="mt-2 text-lg font-semibold">Transparent roadmaps, async updates, and crisp handoff docs.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-3xl border border-white/10 bg-gradient-to-b from-indigo-500/20 via-fuchsia-500/10 to-cyan-500/20 p-8 shadow-xl shadow-fuchsia-900/30">
+            <div className="flex items-center gap-3 text-sm font-semibold text-indigo-50">
+              <Mail className="h-4 w-4" />
+              Let&apos;s build something bold
+            </div>
+            <p className="mt-4 text-lg text-white/80">
+              Have an idea that deserves a vivid execution? I love partnering on ambitious products, sleek marketing sites, and
+              AI-first experiences.
+            </p>
+            <Link
+              href="/contact"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-white text-slate-900 px-5 py-3 text-sm font-semibold shadow-lg shadow-indigo-500/30 transition hover:-translate-y-0.5"
+            >
+              Start the conversation
+              <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
