@@ -12,9 +12,9 @@ import DigitalRain from '@/components/DigitalRain';
 
 const Home = () => {
   const stats = [
-    { label: 'Projects shipped', value: '40+' },
-    { label: 'Open source commits', value: '1k+' },
-    { label: 'Happy collaborators', value: '50+' },
+    { label: 'Live portfolio builds', value: '5 projects' },
+    { label: 'Farcaster experiments', value: '3 mini apps' },
+    { label: 'Stack of choice', value: 'Next.js + TypeScript' },
   ];
 
   const services = [
@@ -57,11 +57,11 @@ const Home = () => {
             <div className="space-y-3">
               <p className="text-sm uppercase tracking-[0.2em] text-indigo-200">Gabriel Temtsen</p>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                Modern full-stack experiences that feel crafted, fast, and alive.
+                Gabriel here—crafting fast, thoughtful products with a design-first mindset.
               </h1>
               <p className="text-lg text-white/70">
-                I ship end-to-end products with sharp UI, resilient architecture, and thoughtful micro-interactions. Let&apos;s
-                create something memorable together.
+                I build end-to-end experiences in Next.js and TypeScript, pairing resilient architecture with polished
+                interactions. If you need a teammate who ships and sweats the details, let&apos;s talk.
               </p>
             </div>
 
@@ -149,20 +149,20 @@ const Home = () => {
             </div>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               <div className="rounded-2xl border border-white/10 bg-slate-900/50 p-4">
-                <p className="text-sm text-white/70">Recent win</p>
-                <p className="mt-2 text-lg font-semibold">Built a lightning-fast booking flow with server actions.</p>
+                <p className="text-sm text-white/70">Moxie Fan Token Alerts</p>
+                <p className="mt-2 text-lg font-semibold">Farcaster bot delivering live fan-token notifications with Convex.</p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-slate-900/50 p-4">
-                <p className="text-sm text-white/70">Community</p>
-                <p className="mt-2 text-lg font-semibold">Maintaining open-source utilities powering thousands of requests.</p>
+                <p className="text-sm text-white/70">OnchainVoter</p>
+                <p className="mt-2 text-lg font-semibold">Gasless voting DApp built with Wagmi, RainbowKit, and Next.js.</p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-slate-900/50 p-4">
-                <p className="text-sm text-white/70">Performance</p>
-                <p className="mt-2 text-lg font-semibold">Ship experiences that score 90+ Lighthouse out of the box.</p>
+                <p className="text-sm text-white/70">Memora AI</p>
+                <p className="mt-2 text-lg font-semibold">Memory-keeping assistant that pairs AI with a calm storytelling UI.</p>
               </div>
               <div className="rounded-2xl border border-white/10 bg-slate-900/50 p-4">
-                <p className="text-sm text-white/70">Collaboration</p>
-                <p className="mt-2 text-lg font-semibold">Transparent roadmaps, async updates, and crisp handoff docs.</p>
+                <p className="text-sm text-white/70">Footy App</p>
+                <p className="mt-2 text-lg font-semibold">Farcaster-friendly football mini app with live match summaries.</p>
               </div>
             </div>
           </div>
