@@ -4,6 +4,7 @@ import { Menu, X } from 'lucide-react';
 import AuroraBackground from './AuroraBackground';
 import UniverseBackground from './UniverseBackground';
 import ThemeToggle from './ThemeToggle';
+import ChatbotWidget from './ChatbotWidget';
 
 interface LayoutProps {
   children: ReactNode;
@@ -60,6 +61,7 @@ const Layout = ({ children }: LayoutProps) => {
         )}
       </header>
       <main className="flex-grow">{children}</main>
+      <ChatbotWidget />
       <footer className="glass text-center p-4 text-sm mt-auto">
         &copy; {year} Gabriel Temtsen. All rights reserved.
       </footer>
