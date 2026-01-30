@@ -32,6 +32,9 @@ const Layout = ({ children }: LayoutProps) => {
             <Link href="/projects" className="hover:text-blue-600">
               Projects
             </Link>
+            <Link href="/services" className="hover:text-blue-600">
+              Services
+            </Link>
             <Link href="/contact" className="hover:text-blue-600">
               Contact
             </Link>
@@ -58,6 +61,9 @@ const Layout = ({ children }: LayoutProps) => {
               </Link>
               <Link href="/projects" className="hover:text-blue-600" onClick={() => setOpen(false)}>
                 Projects
+              </Link>
+              <Link href="/services" className="hover:text-blue-600" onClick={() => setOpen(false)}>
+                Services
               </Link>
               <Link href="/contact" className="hover:text-blue-600" onClick={() => setOpen(false)}>
                 Contact
