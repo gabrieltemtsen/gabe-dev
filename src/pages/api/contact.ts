@@ -22,6 +22,22 @@ const buildEmailHtml = (name: string, email: string, message: string) => `
   </div>
 `;
 
+const getRequestOrigin = (req: NextApiRequest) => {
+  if (typeof req.headers.origin === 'string') {
+    return req.headers.origin;
+  }
+
+  if (typeof req.headers.referer === 'string') {
+    try {
+      return new URL(req.headers.referer).origin;
+    } catch {
+      return undefined;
+    }
+  }
+
+  return undefined;
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ContactResponse>
@@ -29,6 +45,13 @@ export default async function handler(
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ message: 'Method not allowed' });
+  }
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const requestOrigin = getRequestOrigin(req);
+
+  if (siteUrl && requestOrigin && requestOrigin !== siteUrl) {
+    return res.status(403).json({ message: 'Forbidden' });
   }
 
   const { name = '', email = '', message = '' } = req.body as ContactRequestBody;
