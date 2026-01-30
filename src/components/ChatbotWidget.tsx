@@ -127,6 +127,7 @@ const ChatbotWidget = () => {
                   }
                 }}
                 placeholder="Type your message..."
+                aria-describedby="chatbot-submit-helper"
                 className="flex-1 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm focus:border-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-900"
               />
               <button
@@ -138,6 +139,12 @@ const ChatbotWidget = () => {
                 <Send className="h-4 w-4" />
               </button>
             </div>
+            <p
+              id="chatbot-submit-helper"
+              className="mt-2 text-xs text-gray-500 dark:text-gray-400"
+            >
+              Press Enter to send, or use the send button.
+            </p>
           </div>
         </div>
       ) : null}
