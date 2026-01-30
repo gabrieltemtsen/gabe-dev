@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import localFont from "next/font/local";
 import { GetStaticProps } from "next";
@@ -21,6 +22,7 @@ type GithubPageProps = {
   highlightedProjects: HighlightedProject[];
   topTechnologies: string[];
   profileUrl: string;
+  lastUpdated: string;
 };
 
 const geist = localFont({ src: "./fonts/GeistVF.woff" });
@@ -30,6 +32,7 @@ const GithubSummary = ({
   highlightedProjects,
   topTechnologies,
   profileUrl,
+  lastUpdated,
 }: GithubPageProps) => {
   const router = useRouter();
 
@@ -41,6 +44,13 @@ const GithubSummary = ({
     <div
       className={`${geist.className} relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground px-4 py-12`}
     >
+      <Head>
+        <title>GitHub Summary | Open Source Highlights</title>
+        <meta
+          name="description"
+          content="See Gabriel's GitHub highlights, key stats, and top technologies from recent open-source work."
+        />
+      </Head>
       <button
         onClick={handleBack}
         className="bg-gray-300 hover:bg-gray-400 text-black dark:text-gray-900 px-4 py-2 rounded mb-6 self-start"
@@ -62,6 +72,9 @@ const GithubSummary = ({
           >
             Visit GitHub Profile
           </Link>
+          <p className="text-sm text-foreground/70">
+            Last updated: <span className="font-medium">{lastUpdated}</span>
+          </p>
         </header>
 
         <section>
@@ -215,6 +228,7 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
         highlightedProjects,
         topTechnologies,
         profileUrl,
+        lastUpdated: new Date().toISOString(),
       },
       revalidate: 3600,
     };
@@ -234,6 +248,7 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
         highlightedProjects: [],
         topTechnologies: [],
         profileUrl,
+        lastUpdated: new Date().toISOString(),
       },
       revalidate: 600,
     };

@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
@@ -59,6 +60,13 @@ const Contact = () => {
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center px-4 bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <Head>
+        <title>Contact | Let&apos;s Build Together</title>
+        <meta
+          name="description"
+          content="Reach out to collaborate with Gabriel on product design, full-stack development, and Next.js builds."
+        />
+      </Head>
       {/* Back Button */}
       <button
         onClick={handleBack}
@@ -130,7 +138,15 @@ const Contact = () => {
           className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-blue-500 dark:hover:bg-blue-600"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Sending...' : 'Send Message'}
+          <span className="inline-flex items-center justify-center gap-2">
+            {isSubmitting && (
+              <span
+                className="h-4 w-4 animate-spin rounded-full border-2 border-white/60 border-t-white"
+                aria-hidden="true"
+              />
+            )}
+            <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+          </span>
         </button>
       </form>
 
