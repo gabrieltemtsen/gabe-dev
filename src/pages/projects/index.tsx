@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
+import Head from "next/head";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const projects = [
   {
@@ -44,11 +46,19 @@ const Projects = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground">
+      <Head>
+        <title>Projects | Next.js Case Studies</title>
+        <meta
+          name="description"
+          content="Browse Gabriel's recent Next.js projects, including Farcaster apps, DApps, and full-stack product builds."
+        />
+      </Head>
       <div className="max-w-7xl mx-auto p-8 sm:p-12">
       {/* Back Button */}
       <button
+        type="button"
         onClick={handleBack}
-        className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6 transition duration-300 ease-in-out hover:shadow-md"
+        className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6 transition duration-300 ease-in-out hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
       >
         &larr; Back
       </button>
@@ -64,13 +74,16 @@ const Projects = () => {
           <a
             key={index}
             href={project.link}
-            className="glass flex flex-col p-6 rounded-xl shadow-subtle hover:shadow-deep transition-transform duration-300 hover:scale-105"
+            className="glass flex flex-col p-6 rounded-xl shadow-subtle hover:shadow-deep transition-transform duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img
+            <Image
               src={project.image}
               alt={project.title}
+              width={640}
+              height={160}
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
               className="w-full h-40 object-cover rounded-md mb-4"
             />
             <h3 className="text-2xl font-bold text-primary dark:text-gray-200 mb-2 font-sans">
@@ -79,7 +92,7 @@ const Projects = () => {
             <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed flex-grow">
               {project.description}
             </p>
-            <span className="mt-auto inline-block bg-accent text-white py-2 px-4 rounded-lg transition duration-300 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            <span className="mt-auto inline-block bg-accent text-white py-2 px-4 rounded-lg transition duration-300 hover:bg-blue-600">
               View Project &rarr;
             </span>
           </a>
