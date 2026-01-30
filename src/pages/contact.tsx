@@ -62,7 +62,7 @@ const Contact = () => {
       {/* Back Button */}
       <button
         onClick={handleBack}
-        className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6"
+        className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
       >
         &larr; Back
       </button>
@@ -91,7 +91,7 @@ const Contact = () => {
           <label className="block text-gray-700 dark:text-gray-200 font-medium">Name</label>
           <input
             type="text"
-            className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100"
+            className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none bg-white dark:bg-gray-700 dark:text-gray-100"
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             placeholder="Enter your name"
@@ -104,7 +104,7 @@ const Contact = () => {
           <label className="block text-gray-700 dark:text-gray-200 font-medium">Email</label>
           <input
             type="email"
-            className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100"
+            className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none bg-white dark:bg-gray-700 dark:text-gray-100"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             placeholder="Enter your email"
@@ -116,7 +116,7 @@ const Contact = () => {
         <div className="mb-6">
           <label className="block text-gray-700 dark:text-gray-200 font-medium">Message</label>
           <textarea
-            className="w-full h-32 px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white dark:bg-gray-700 dark:text-gray-100"
+            className="w-full h-32 px-4 py-2 mt-1 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none bg-white dark:bg-gray-700 dark:text-gray-100"
             value={form.message}
             onChange={(e) => setForm({ ...form, message: e.target.value })}
             placeholder="Write your message here"
@@ -127,7 +127,7 @@ const Contact = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-blue-500 dark:hover:bg-blue-600"
+          className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-blue-500 dark:hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -138,19 +138,19 @@ const Contact = () => {
       <div className="flex space-x-6 mt-8 text-gray-700 dark:text-gray-200">
         <a
           href="https://github.com"
-          className="hover:text-gray-900 dark:hover:text-white transition-colors"
+          className="hover:text-gray-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 rounded"
         >
           <Github className="w-6 h-6" />
         </a>
         <a
           href="https://linkedin.com"
-          className="hover:text-gray-900 dark:hover:text-white transition-colors"
+          className="hover:text-gray-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 rounded"
         >
           <Linkedin className="w-6 h-6" />
         </a>
         <a
           href="mailto:gabrieltemtsen@gmail.com"
-          className="hover:text-gray-900 dark:hover:text-white transition-colors"
+          className="hover:text-gray-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 rounded"
         >
           <Mail className="w-6 h-6" />
         </a>
