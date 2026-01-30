@@ -40,9 +40,15 @@ export default async function handler(
   }
 
   const apiKey = process.env.RESEND_API_KEY;
+  const contactReceiverEmail = process.env.CONTACT_RECEIVER_EMAIL;
 
-  if (!apiKey) {
-    console.error('Missing RESEND_API_KEY environment variable.');
+  if (!apiKey || !contactReceiverEmail) {
+    if (!apiKey) {
+      console.error('Missing RESEND_API_KEY environment variable.');
+    }
+    if (!contactReceiverEmail) {
+      console.error('Missing CONTACT_RECEIVER_EMAIL environment variable.');
+    }
     return res
       .status(500)
       .json({ message: 'Email service is not configured. Please try again later.' });
@@ -57,7 +63,7 @@ export default async function handler(
       },
       body: JSON.stringify({
         from: 'Portfolio Contact Form <onboarding@resend.dev>',
-        to: ['gabrieltemtsen@gmail.com'],
+        to: [contactReceiverEmail],
         reply_to: email,
         subject: `New message from ${name}`,
         html: buildEmailHtml(name, email, message),
