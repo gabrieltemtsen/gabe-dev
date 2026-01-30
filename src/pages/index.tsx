@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Link from 'next/link';
 import {
   ArrowUpRight,
@@ -39,6 +40,13 @@ const Home = () => {
 
   return (
     <div className="relative overflow-hidden">
+      <Head>
+        <title>Gabriel Temtsen | Product Designer &amp; Developer</title>
+        <meta
+          name="description"
+          content="Explore Gabriel Temtsen's portfolio of Next.js and TypeScript builds, featured projects, and design-forward product work."
+        />
+      </Head>
       <DigitalRain />
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-black opacity-90" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.25),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(14,165,233,0.2),transparent_40%),radial-gradient(circle_at_30%_80%,rgba(236,72,153,0.2),transparent_40%)]" />

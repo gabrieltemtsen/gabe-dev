@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import localFont from "next/font/local";
 
@@ -10,6 +11,13 @@ const About = () => {
   };
   return (
     <div className={`${geist.className} relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground`}>
+      <Head>
+        <title>About Gabe | Full-Stack Builder</title>
+        <meta
+          name="description"
+          content="Learn about Gabe's background in full-stack development, design-forward web experiences, and AI-powered product work."
+        />
+      </Head>
       <button
         onClick={handleBack}
         className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6"

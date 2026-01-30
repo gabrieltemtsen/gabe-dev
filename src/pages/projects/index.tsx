@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 const projects = [
@@ -44,6 +45,13 @@ const Projects = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground">
+      <Head>
+        <title>Projects | Next.js Case Studies</title>
+        <meta
+          name="description"
+          content="Browse Gabriel's recent Next.js projects, including Farcaster apps, DApps, and full-stack product builds."
+        />
+      </Head>
       <div className="max-w-7xl mx-auto p-8 sm:p-12">
       {/* Back Button */}
       <button
