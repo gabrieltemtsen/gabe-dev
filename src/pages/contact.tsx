@@ -138,7 +138,15 @@ const Contact = () => {
           className="w-full px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-70 dark:bg-blue-500 dark:hover:bg-blue-600"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Sending...' : 'Send Message'}
+          <span className="inline-flex items-center justify-center gap-2">
+            {isSubmitting && (
+              <span
+                className="h-4 w-4 animate-spin rounded-full border-2 border-white/60 border-t-white"
+                aria-hidden="true"
+              />
+            )}
+            <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+          </span>
         </button>
       </form>
 
