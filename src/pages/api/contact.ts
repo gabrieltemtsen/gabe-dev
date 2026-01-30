@@ -12,6 +12,14 @@ interface ContactResponse {
 
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
 const buildEmailHtml = (name: string, email: string, message: string) => `
   <div style="font-family: Arial, sans-serif; font-size: 16px; color: #1f2937;">
     <h2 style="margin-bottom: 16px;">New Contact Form Submission</h2>
@@ -77,6 +85,10 @@ export default async function handler(
       .json({ message: 'Email service is not configured. Please try again later.' });
   }
 
+  const safeName = escapeHtml(name);
+  const safeEmail = escapeHtml(email);
+  const safeMessage = escapeHtml(message);
+
   try {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -89,7 +101,7 @@ export default async function handler(
         to: [contactReceiverEmail],
         reply_to: email,
         subject: `New message from ${name}`,
-        html: buildEmailHtml(name, email, message),
+        html: buildEmailHtml(safeName, safeEmail, safeMessage),
         text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`,
       }),
     });
