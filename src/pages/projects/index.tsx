@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const projects = [
   {
@@ -76,9 +77,12 @@ const Projects = () => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img
+            <Image
               src={project.image}
               alt={project.title}
+              width={640}
+              height={160}
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
               className="w-full h-40 object-cover rounded-md mb-4"
             />
             <h3 className="text-2xl font-bold text-primary dark:text-gray-200 mb-2 font-sans">
