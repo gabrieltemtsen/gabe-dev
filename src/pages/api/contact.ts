@@ -10,8 +10,55 @@ interface ContactResponse {
   message: string;
 }
 
+interface ContactErrorResponse extends ContactResponse {
+  errors: Record<string, string>;
+}
+
+type ContactApiResponse = ContactResponse | ContactErrorResponse;
+
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+const contactSchema = {
+  safeParse: (payload: unknown) => {
+    const errors: Record<string, string> = {};
+
+    if (!payload || typeof payload !== 'object') {
+      return { success: false, errors: { body: 'Request body must be a JSON object.' } };
+    }
+
+    const { name, email, message } = payload as ContactRequestBody;
+    const trimmedName = typeof name === 'string' ? name.trim() : '';
+    const trimmedEmail = typeof email === 'string' ? email.trim() : '';
+    const trimmedMessage = typeof message === 'string' ? message.trim() : '';
+
+    if (!trimmedName) {
+      errors.name = 'Name is required.';
+    }
+
+    if (!trimmedEmail) {
+      errors.email = 'Email is required.';
+    } else if (!isValidEmail(trimmedEmail)) {
+      errors.email = 'Email must be valid.';
+    }
+
+    if (!trimmedMessage) {
+      errors.message = 'Message is required.';
+    }
+
+    if (Object.keys(errors).length > 0) {
+      return { success: false, errors };
+    }
+
+    return {
+      success: true,
+      data: {
+        name: trimmedName,
+        email: trimmedEmail,
+        message: trimmedMessage,
+      },
+    };
+  },
+};
 const escapeHtml = (value: string) =>
   value
     .replace(/&/g, '&amp;')
@@ -48,13 +95,14 @@ const getRequestOrigin = (req: NextApiRequest) => {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<ContactResponse>
+  res: NextApiResponse<ContactApiResponse>
 ) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
+  const parsedBody = contactSchema.safeParse(req.body);
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
   const requestOrigin = getRequestOrigin(req);
 
@@ -64,12 +112,13 @@ export default async function handler(
 
   const { name = '', email = '', message = '' } = req.body as ContactRequestBody;
 
-  if (!name.trim() || !message.trim() || !isValidEmail(email)) {
+  if (!parsedBody.success) {
     return res
       .status(400)
-      .json({ message: 'Please provide a valid name, email, and message.' });
+      .json({ message: 'Invalid request body.', errors: parsedBody.errors });
   }
 
+  const { name, email, message } = parsedBody.data;
   const apiKey = process.env.RESEND_API_KEY;
   const contactReceiverEmail = process.env.CONTACT_RECEIVER_EMAIL;
 
