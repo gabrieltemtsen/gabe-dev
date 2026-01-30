@@ -21,6 +21,7 @@ type GithubPageProps = {
   highlightedProjects: HighlightedProject[];
   topTechnologies: string[];
   profileUrl: string;
+  lastUpdated: string;
 };
 
 const geist = localFont({ src: "./fonts/GeistVF.woff" });
@@ -30,6 +31,7 @@ const GithubSummary = ({
   highlightedProjects,
   topTechnologies,
   profileUrl,
+  lastUpdated,
 }: GithubPageProps) => {
   const router = useRouter();
 
@@ -62,6 +64,9 @@ const GithubSummary = ({
           >
             Visit GitHub Profile
           </Link>
+          <p className="text-sm text-foreground/70">
+            Last updated: <span className="font-medium">{lastUpdated}</span>
+          </p>
         </header>
 
         <section>
@@ -215,6 +220,7 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
         highlightedProjects,
         topTechnologies,
         profileUrl,
+        lastUpdated: new Date().toISOString(),
       },
       revalidate: 3600,
     };
@@ -234,6 +240,7 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
         highlightedProjects: [],
         topTechnologies: [],
         profileUrl,
+        lastUpdated: new Date().toISOString(),
       },
       revalidate: 600,
     };
