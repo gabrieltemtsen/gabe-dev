@@ -64,6 +64,11 @@ const GithubSummary = ({
           <p className="text-lg text-foreground/80">
             A quick snapshot of Gabe&apos;s GitHub activity, highlighted projects, and favorite technologies.
           </p>
+          {message ? (
+            <p className="rounded-lg border border-amber-300/70 bg-amber-100/80 px-4 py-3 text-sm font-medium text-amber-900 dark:border-amber-500/60 dark:bg-amber-900/40 dark:text-amber-100">
+              {message}
+            </p>
+          ) : null}
           <Link
             href={profileUrl}
             target="_blank"
@@ -169,11 +174,22 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
       }),
     ]);
 
+    const isRateLimitedResponse = (response: Response) =>
+      response.status === 403 && response.headers.get("x-ratelimit-remaining") === "0";
+
+    const isRateLimited = isRateLimitedResponse(userResponse) || isRateLimitedResponse(reposResponse);
+
     if (!userResponse.ok) {
+      if (isRateLimited) {
+        throw new Error("Rate limited");
+      }
       throw new Error(`Failed to fetch user profile: ${userResponse.status}`);
     }
 
     if (!reposResponse.ok) {
+      if (isRateLimited) {
+        throw new Error("Rate limited");
+      }
       throw new Error(`Failed to fetch repositories: ${reposResponse.status}`);
     }
 
@@ -241,6 +257,10 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
       { label: "Following", value: "-" },
       { label: "Total Stars", value: "-" },
     ];
+    const message =
+      error instanceof Error && error.message === "Rate limited"
+        ? "Rate limit reached; try later."
+        : "GitHub data is temporarily unavailable. Please check back soon.";
 
     return {
       props: {
