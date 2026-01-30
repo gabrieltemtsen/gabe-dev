@@ -47,6 +47,7 @@ const Projects = () => {
       <div className="max-w-7xl mx-auto p-8 sm:p-12">
       {/* Back Button */}
       <button
+        type="button"
         onClick={handleBack}
         className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6 transition duration-300 ease-in-out hover:shadow-md"
       >

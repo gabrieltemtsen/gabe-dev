@@ -42,6 +42,7 @@ const GithubSummary = ({
       className={`${geist.className} relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground px-4 py-12`}
     >
       <button
+        type="button"
         onClick={handleBack}
         className="bg-gray-300 hover:bg-gray-400 text-black dark:text-gray-900 px-4 py-2 rounded mb-6 self-start"
       >

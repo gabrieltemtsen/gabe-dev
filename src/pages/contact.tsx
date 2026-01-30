@@ -61,6 +61,7 @@ const Contact = () => {
     <div className="relative min-h-screen flex flex-col items-center justify-center px-4 bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       {/* Back Button */}
       <button
+        type="button"
         onClick={handleBack}
         className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6"
       >
