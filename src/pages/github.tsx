@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import localFont from "next/font/local";
 import { GetStaticProps } from "next";
@@ -21,6 +22,7 @@ type GithubPageProps = {
   highlightedProjects: HighlightedProject[];
   topTechnologies: string[];
   profileUrl: string;
+  lastUpdated: string;
 };
 
 const geist = localFont({ src: "./fonts/GeistVF.woff" });
@@ -30,6 +32,7 @@ const GithubSummary = ({
   highlightedProjects,
   topTechnologies,
   profileUrl,
+  lastUpdated,
 }: GithubPageProps) => {
   const router = useRouter();
 
@@ -41,7 +44,15 @@ const GithubSummary = ({
     <div
       className={`${geist.className} relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground px-4 py-12`}
     >
+      <Head>
+        <title>GitHub Summary | Open Source Highlights</title>
+        <meta
+          name="description"
+          content="See Gabriel's GitHub highlights, key stats, and top technologies from recent open-source work."
+        />
+      </Head>
       <button
+        type="button"
         onClick={handleBack}
         className="bg-gray-300 hover:bg-gray-400 text-black dark:text-gray-900 px-4 py-2 rounded mb-6 self-start"
       >
@@ -54,6 +65,11 @@ const GithubSummary = ({
           <p className="text-lg text-foreground/80">
             A quick snapshot of Gabe&apos;s GitHub activity, highlighted projects, and favorite technologies.
           </p>
+          {message ? (
+            <p className="rounded-lg border border-amber-300/70 bg-amber-100/80 px-4 py-3 text-sm font-medium text-amber-900 dark:border-amber-500/60 dark:bg-amber-900/40 dark:text-amber-100">
+              {message}
+            </p>
+          ) : null}
           <Link
             href={profileUrl}
             target="_blank"
@@ -62,6 +78,9 @@ const GithubSummary = ({
           >
             Visit GitHub Profile
           </Link>
+          <p className="text-sm text-foreground/70">
+            Last updated: <span className="font-medium">{lastUpdated}</span>
+          </p>
         </header>
 
         <section>
@@ -156,11 +175,22 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
       }),
     ]);
 
+    const isRateLimitedResponse = (response: Response) =>
+      response.status === 403 && response.headers.get("x-ratelimit-remaining") === "0";
+
+    const isRateLimited = isRateLimitedResponse(userResponse) || isRateLimitedResponse(reposResponse);
+
     if (!userResponse.ok) {
+      if (isRateLimited) {
+        throw new Error("Rate limited");
+      }
       throw new Error(`Failed to fetch user profile: ${userResponse.status}`);
     }
 
     if (!reposResponse.ok) {
+      if (isRateLimited) {
+        throw new Error("Rate limited");
+      }
       throw new Error(`Failed to fetch repositories: ${reposResponse.status}`);
     }
 
@@ -215,6 +245,7 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
         highlightedProjects,
         topTechnologies,
         profileUrl,
+        lastUpdated: new Date().toISOString(),
       },
       revalidate: 3600,
     };
@@ -227,6 +258,10 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
       { label: "Following", value: "-" },
       { label: "Total Stars", value: "-" },
     ];
+    const message =
+      error instanceof Error && error.message === "Rate limited"
+        ? "Rate limit reached; try later."
+        : "GitHub data is temporarily unavailable. Please check back soon.";
 
     return {
       props: {
@@ -234,6 +269,7 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
         highlightedProjects: [],
         topTechnologies: [],
         profileUrl,
+        lastUpdated: new Date().toISOString(),
       },
       revalidate: 600,
     };

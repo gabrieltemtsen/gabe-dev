@@ -12,6 +12,14 @@ interface ContactResponse {
 
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
 const buildEmailHtml = (name: string, email: string, message: string) => `
   <div style="font-family: Arial, sans-serif; font-size: 16px; color: #1f2937;">
     <h2 style="margin-bottom: 16px;">New Contact Form Submission</h2>
@@ -22,6 +30,22 @@ const buildEmailHtml = (name: string, email: string, message: string) => `
   </div>
 `;
 
+const getRequestOrigin = (req: NextApiRequest) => {
+  if (typeof req.headers.origin === 'string') {
+    return req.headers.origin;
+  }
+
+  if (typeof req.headers.referer === 'string') {
+    try {
+      return new URL(req.headers.referer).origin;
+    } catch {
+      return undefined;
+    }
+  }
+
+  return undefined;
+};
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<ContactResponse>
@@ -29,6 +53,13 @@ export default async function handler(
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ message: 'Method not allowed' });
+  }
+
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const requestOrigin = getRequestOrigin(req);
+
+  if (siteUrl && requestOrigin && requestOrigin !== siteUrl) {
+    return res.status(403).json({ message: 'Forbidden' });
   }
 
   const { name = '', email = '', message = '' } = req.body as ContactRequestBody;
@@ -40,13 +71,23 @@ export default async function handler(
   }
 
   const apiKey = process.env.RESEND_API_KEY;
+  const contactReceiverEmail = process.env.CONTACT_RECEIVER_EMAIL;
 
-  if (!apiKey) {
-    console.error('Missing RESEND_API_KEY environment variable.');
+  if (!apiKey || !contactReceiverEmail) {
+    if (!apiKey) {
+      console.error('Missing RESEND_API_KEY environment variable.');
+    }
+    if (!contactReceiverEmail) {
+      console.error('Missing CONTACT_RECEIVER_EMAIL environment variable.');
+    }
     return res
       .status(500)
       .json({ message: 'Email service is not configured. Please try again later.' });
   }
+
+  const safeName = escapeHtml(name);
+  const safeEmail = escapeHtml(email);
+  const safeMessage = escapeHtml(message);
 
   try {
     const response = await fetch('https://api.resend.com/emails', {
@@ -57,10 +98,10 @@ export default async function handler(
       },
       body: JSON.stringify({
         from: 'Portfolio Contact Form <onboarding@resend.dev>',
-        to: ['gabrieltemtsen@gmail.com'],
+        to: [contactReceiverEmail],
         reply_to: email,
         subject: `New message from ${name}`,
-        html: buildEmailHtml(name, email, message),
+        html: buildEmailHtml(safeName, safeEmail, safeMessage),
         text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`,
       }),
     });

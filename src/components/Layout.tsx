@@ -1,10 +1,12 @@
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { ReactNode, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import AuroraBackground from './AuroraBackground';
 import UniverseBackground from './UniverseBackground';
 import ThemeToggle from './ThemeToggle';
-import ChatbotWidget from './ChatbotWidget';
+
+const ChatbotWidget = dynamic(() => import('./ChatbotWidget'), { ssr: false });
 
 interface LayoutProps {
   children: ReactNode;
@@ -32,16 +34,16 @@ const Layout = ({ children }: LayoutProps) => {
             >
               About
             </Link>
-            <Link
-              href="/projects"
-              className="hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
-            >
+            <Link href="/now" className="hover:text-blue-600">
+              Now
+            </Link>
+            <Link href="/projects" className="hover:text-blue-600">
               Projects
             </Link>
-            <Link
-              href="/contact"
-              className="hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
-            >
+            <Link href="/services" className="hover:text-blue-600">
+              Services
+            </Link>
+            <Link href="/contact" className="hover:text-blue-600">
               Contact
             </Link>
           </nav>
@@ -66,18 +68,16 @@ const Layout = ({ children }: LayoutProps) => {
               >
                 About
               </Link>
-              <Link
-                href="/projects"
-                className="hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
-                onClick={() => setOpen(false)}
-              >
+              <Link href="/now" className="hover:text-blue-600" onClick={() => setOpen(false)}>
+                Now
+              </Link>
+              <Link href="/projects" className="hover:text-blue-600" onClick={() => setOpen(false)}>
                 Projects
               </Link>
-              <Link
-                href="/contact"
-                className="hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
-                onClick={() => setOpen(false)}
-              >
+              <Link href="/services" className="hover:text-blue-600" onClick={() => setOpen(false)}>
+                Services
+              </Link>
+              <Link href="/contact" className="hover:text-blue-600" onClick={() => setOpen(false)}>
                 Contact
               </Link>
             </nav>
