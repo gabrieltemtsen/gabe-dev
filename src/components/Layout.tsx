@@ -26,6 +26,9 @@ const Layout = ({ children }: LayoutProps) => {
             <Link href="/about" className="hover:text-blue-600">
               About
             </Link>
+            <Link href="/now" className="hover:text-blue-600">
+              Now
+            </Link>
             <Link href="/projects" className="hover:text-blue-600">
               Projects
             </Link>
@@ -49,6 +52,9 @@ const Layout = ({ children }: LayoutProps) => {
             <nav className="flex flex-col space-y-2">
               <Link href="/about" className="hover:text-blue-600" onClick={() => setOpen(false)}>
                 About
+              </Link>
+              <Link href="/now" className="hover:text-blue-600" onClick={() => setOpen(false)}>
+                Now
               </Link>
               <Link href="/projects" className="hover:text-blue-600" onClick={() => setOpen(false)}>
                 Projects
