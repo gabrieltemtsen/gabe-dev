@@ -52,6 +52,7 @@ const GithubSummary = ({
         />
       </Head>
       <button
+        type="button"
         onClick={handleBack}
         className="bg-gray-300 hover:bg-gray-400 text-black dark:text-gray-900 px-4 py-2 rounded mb-6 self-start"
       >

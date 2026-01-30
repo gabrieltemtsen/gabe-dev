@@ -69,6 +69,7 @@ const Contact = () => {
       </Head>
       {/* Back Button */}
       <button
+        type="button"
         onClick={handleBack}
         className="bg-gray-300 hover:bg-gray-400 text-black p-2 rounded mb-6"
       >
