@@ -1,4 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { GetServerSideProps } from 'next';
 
 const routes = ['/', '/projects', '/about', '/services', '/contact', '/now'];
 
@@ -15,11 +15,16 @@ ${routes
   .join('\n')}
 </urlset>`;
 
-export default function handler(_req: NextApiRequest, res: NextApiResponse) {
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
   const xml = buildSitemap(baseUrl);
   res.setHeader('Content-Type', 'application/xml');
   res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate');
-  res.status(200).send(xml);
-}
+  res.write(xml);
+  res.end();
+  return { props: {} };
+};
 
+export default function SiteMap() {
+  return null;
+}
