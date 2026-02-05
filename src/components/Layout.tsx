@@ -19,7 +19,10 @@ const Layout = ({ children }: LayoutProps) => {
     <div className="relative min-h-screen flex flex-col bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground">
       <UniverseBackground />
       <AuroraBackground />
-      <header className="glass shadow-md sticky top-0 z-20">
+      <a href="#content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 bg-white text-slate-900 px-3 py-2 rounded-md shadow">
+        Skip to content
+      </a>
+      <header className="glass shadow-md sticky top-0 z-20" role="banner">
         <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 py-3">
           <Link
             href="/"
@@ -27,7 +30,7 @@ const Layout = ({ children }: LayoutProps) => {
           >
             Gabe Dev
           </Link>
-          <nav className="hidden sm:flex space-x-6 ml-8">
+          <nav className="hidden sm:flex space-x-6 ml-8" aria-label="Primary">
             <Link
               href="/about"
               className="hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
@@ -59,8 +62,8 @@ const Layout = ({ children }: LayoutProps) => {
           </div>
         </div>
         {open && (
-          <div className="sm:hidden px-4 pb-4 space-y-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md">
-            <nav className="flex flex-col space-y-2">
+          <div className="sm:hidden px-4 pb-4 space-y-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md" role="dialog" aria-label="Mobile navigation">
+            <nav className="flex flex-col space-y-2" aria-label="Mobile">
               <Link
                 href="/about"
                 className="hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
@@ -84,7 +87,7 @@ const Layout = ({ children }: LayoutProps) => {
           </div>
         )}
       </header>
-      <main className="flex-grow">{children}</main>
+      <main id="content" className="flex-grow">{children}</main>
       <ChatbotWidget />
       <footer className="glass text-center p-4 text-sm mt-auto">
         &copy; {year} Gabriel Temtsen. All rights reserved.
