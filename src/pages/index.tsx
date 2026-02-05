@@ -63,6 +63,28 @@ const Home = () => {
           name="description"
           content="Explore Gabriel Temtsen's portfolio of Next.js and TypeScript builds, featured projects, and design-forward product work."
         />
+        <link rel="canonical" href={(process as any).env.NEXT_PUBLIC_SITE_URL || 'https://example.com'} />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Gabriel Temtsen',
+              url: (process as any).env.NEXT_PUBLIC_SITE_URL || 'https://example.com',
+              sameAs: [
+                'https://github.com/gabrieltemtsen',
+                'https://www.warpcast.com/gabrieltemtsen',
+              ],
+              jobTitle: 'Full‑stack developer',
+              worksFor: {
+                '@type': 'Organization',
+                name: 'Independent',
+              },
+            }),
+          }}
+        />
       </Head>
       <DigitalRain />
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-black opacity-90" />
