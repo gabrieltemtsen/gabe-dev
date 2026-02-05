@@ -110,8 +110,6 @@ export default async function handler(
     return res.status(403).json({ message: 'Forbidden' });
   }
 
-  const { name = '', email = '', message = '' } = req.body as ContactRequestBody;
-
   if (!parsedBody.success) {
     return res
       .status(400)
