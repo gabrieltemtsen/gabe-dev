@@ -50,6 +50,7 @@ const GithubSummary = ({
           name="description"
           content="See Gabriel's GitHub highlights, key stats, and top technologies from recent open-source work."
         />
+        <link rel="canonical" href={(process as any).env.NEXT_PUBLIC_SITE_URL ? `${(process as any).env.NEXT_PUBLIC_SITE_URL}/github` : 'https://example.com/github'} />
       </Head>
       <button
         type="button"
@@ -65,11 +66,7 @@ const GithubSummary = ({
           <p className="text-lg text-foreground/80">
             A quick snapshot of Gabe&apos;s GitHub activity, highlighted projects, and favorite technologies.
           </p>
-          {message ? (
-            <p className="rounded-lg border border-amber-300/70 bg-amber-100/80 px-4 py-3 text-sm font-medium text-amber-900 dark:border-amber-500/60 dark:bg-amber-900/40 dark:text-amber-100">
-              {message}
-            </p>
-          ) : null}
+          {/* Status message removed; consider adding via props if needed */}
           <Link
             href={profileUrl}
             target="_blank"
