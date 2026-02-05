@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import localFont from "next/font/local";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import { getSiteUrl } from '@/utils/site';
 import { useRouter } from "next/router";
 
@@ -156,7 +156,7 @@ const GithubSummary = ({
   );
 };
 
-export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
+export const getServerSideProps: GetServerSideProps<GithubPageProps> = async () => {
   const username = "gabrieltemtsen";
   const profileUrl = `https://github.com/${username}`;
 
@@ -245,7 +245,6 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
         profileUrl,
         lastUpdated: new Date().toISOString(),
       },
-      revalidate: 3600,
     };
   } catch (error) {
     console.error("Failed to load GitHub data", error);
@@ -264,7 +263,6 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
         profileUrl,
         lastUpdated: new Date().toISOString(),
       },
-      revalidate: 600,
     };
   }
 };
