@@ -20,6 +20,15 @@ const UniverseBackground: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      // Render a static gradient background without star animation
+      const { innerWidth: w, innerHeight: h } = window;
+      canvas.width = w;
+      canvas.height = h;
+      return;
+    }
+
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const { innerWidth: w, innerHeight: h } = window;

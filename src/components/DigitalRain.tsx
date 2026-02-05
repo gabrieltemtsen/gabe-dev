@@ -10,6 +10,12 @@ const DigitalRain: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      // Respect user preference: keep canvas empty
+      return;
+    }
+
     let animationFrame = 0;
 
     const resize = () => {
