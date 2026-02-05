@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Head from 'next/head';
 import { ArrowUpRight, Palette, Rocket, Sparkles } from 'lucide-react';
 
 const Services = () => {
@@ -22,6 +23,11 @@ const Services = () => {
 
   return (
     <div className="relative overflow-hidden py-16 sm:py-20">
+      <Head>
+        <title>Services | Thoughtful Product Delivery</title>
+        <meta name="description" content="Product-ready builds, delightful interfaces, and AI-infused workflows." />
+        <link rel="canonical" href={(process as any).env.NEXT_PUBLIC_SITE_URL ? `${(process as any).env.NEXT_PUBLIC_SITE_URL}/services` : 'https://example.com/services'} />
+      </Head>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.2),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(14,165,233,0.15),transparent_40%),radial-gradient(circle_at_30%_80%,rgba(236,72,153,0.15),transparent_40%)]" />
       <div className="relative container mx-auto px-4 sm:px-6">
         <div className="max-w-3xl space-y-4">

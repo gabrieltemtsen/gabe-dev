@@ -52,6 +52,7 @@ const Projects = () => {
           name="description"
           content="Browse Gabriel's recent Next.js projects, including Farcaster apps, DApps, and full-stack product builds."
         />
+        <link rel="canonical" href={(process as any).env.NEXT_PUBLIC_SITE_URL ? `${(process as any).env.NEXT_PUBLIC_SITE_URL}/projects` : 'https://example.com/projects'} />
       </Head>
       <div className="max-w-7xl mx-auto p-8 sm:p-12">
       {/* Back Button */}
