@@ -44,7 +44,7 @@ const Contact = () => {
         type: 'success',
         message: data.message || "Your message has been sent! I'll get back to you soon.",
       });
-      setForm({ name: '', email: '', message: '' });
+      setForm({ name: '', email: '', message: '', website: '' });
     } catch (error) {
       const message =
         error instanceof Error
