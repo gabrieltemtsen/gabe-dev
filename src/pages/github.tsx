@@ -2,6 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import localFont from "next/font/local";
 import { GetStaticProps } from "next";
+import { getSiteUrl } from '@/utils/site';
 import { useRouter } from "next/router";
 
 type GithubStat = {
@@ -50,7 +51,7 @@ const GithubSummary = ({
           name="description"
           content="See Gabriel's GitHub highlights, key stats, and top technologies from recent open-source work."
         />
-        <link rel="canonical" href={(process as any).env.NEXT_PUBLIC_SITE_URL ? `${(process as any).env.NEXT_PUBLIC_SITE_URL}/github` : 'https://example.com/github'} />
+        <link rel="canonical" href={`${getSiteUrl()}/github`} />
       </Head>
       <button
         type="button"
@@ -255,11 +256,6 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
       { label: "Following", value: "-" },
       { label: "Total Stars", value: "-" },
     ];
-    const message =
-      error instanceof Error && error.message === "Rate limited"
-        ? "Rate limit reached; try later."
-        : "GitHub data is temporarily unavailable. Please check back soon.";
-
     return {
       props: {
         stats: fallbackStats,

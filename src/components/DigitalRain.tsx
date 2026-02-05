@@ -31,7 +31,7 @@ const DigitalRain: React.FC = () => {
     resize();
 
     const chars = '01';
-    let fontSize = 14;
+    const fontSize = 14;
     let columns = Math.floor(canvas.width / fontSize);
     let drops: number[] = Array(columns).fill(1);
     let last = 0;

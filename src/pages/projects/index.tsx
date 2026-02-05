@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
+import { getSiteUrl } from '@/utils/site';
 import { useRouter } from "next/router";
 import Image from "next/image";
 
@@ -52,7 +53,7 @@ const Projects = () => {
           name="description"
           content="Browse Gabriel's recent Next.js projects, including Farcaster apps, DApps, and full-stack product builds."
         />
-        <link rel="canonical" href={(process as any).env.NEXT_PUBLIC_SITE_URL ? `${(process as any).env.NEXT_PUBLIC_SITE_URL}/projects` : 'https://example.com/projects'} />
+        <link rel="canonical" href={`${getSiteUrl()}/projects`} />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
@@ -63,9 +64,9 @@ const Projects = () => {
               itemListElement: projects.map((p, i) => ({
                 '@type': 'ListItem',
                 position: i + 1,
-                url: p.link.startsWith('http') ? p.link : ((process as any).env.NEXT_PUBLIC_SITE_URL || 'https://example.com') + p.link,
+                url: p.link.startsWith('http') ? p.link : getSiteUrl() + p.link,
                 name: p.title,
-                image: ((process as any).env.NEXT_PUBLIC_SITE_URL || 'https://example.com') + p.image,
+                image: getSiteUrl() + p.image,
               })),
             }),
           }}

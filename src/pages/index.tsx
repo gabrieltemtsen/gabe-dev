@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import DigitalRain from '@/components/DigitalRain';
+import { getSiteUrl } from '@/utils/site';
 
 const Home = () => {
   const stats = [
@@ -63,7 +64,7 @@ const Home = () => {
           name="description"
           content="Explore Gabriel Temtsen's portfolio of Next.js and TypeScript builds, featured projects, and design-forward product work."
         />
-        <link rel="canonical" href={(process as any).env.NEXT_PUBLIC_SITE_URL || 'https://example.com'} />
+        <link rel="canonical" href={getSiteUrl()} />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
@@ -72,7 +73,7 @@ const Home = () => {
               '@context': 'https://schema.org',
               '@type': 'Person',
               name: 'Gabriel Temtsen',
-              url: (process as any).env.NEXT_PUBLIC_SITE_URL || 'https://example.com',
+              url: getSiteUrl(),
               sameAs: [
                 'https://github.com/gabrieltemtsen',
                 'https://www.warpcast.com/gabrieltemtsen',

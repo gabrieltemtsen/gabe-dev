@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { getSiteUrl } from '@/utils/site';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
@@ -66,7 +67,7 @@ const Contact = () => {
           name="description"
           content="Reach out to collaborate with Gabriel on product design, full-stack development, and Next.js builds."
         />
-        <link rel="canonical" href={(process as any).env.NEXT_PUBLIC_SITE_URL ? `${(process as any).env.NEXT_PUBLIC_SITE_URL}/contact` : 'https://example.com/contact'} />
+        <link rel="canonical" href={`${getSiteUrl()}/contact`} />
       </Head>
       {/* Back Button */}
       <button

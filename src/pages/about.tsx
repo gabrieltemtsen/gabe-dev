@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import localFont from "next/font/local";
+import { getSiteUrl } from '@/utils/site';
 
 const geist = localFont({ src: "./fonts/GeistVF.woff" });
 
@@ -17,7 +18,7 @@ const About = () => {
           name="description"
           content="Learn about Gabe's background in full-stack development, design-forward web experiences, and AI-powered product work."
         />
-        <link rel="canonical" href={(process as any).env.NEXT_PUBLIC_SITE_URL ? `${(process as any).env.NEXT_PUBLIC_SITE_URL}/about` : 'https://example.com/about'} />
+        <link rel="canonical" href={`${getSiteUrl()}/about`} />
       </Head>
       <button
         type="button"
