@@ -19,6 +19,12 @@ type ContactApiResponse = ContactResponse | ContactErrorResponse;
 
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+type ContactSchemaSuccess = {
+  success: true;
+  data: { name: string; email: string; message: string; website: string };
+};
+type ContactSchemaFailure = { success: false; errors: Record<string, string> };
+
 const contactSchema = {
   safeParse: (payload: unknown) => {
     const errors: Record<string, string> = {};
@@ -55,7 +61,7 @@ const contactSchema = {
       return { success: false, errors };
     }
 
-    return {
+    const result: ContactSchemaSuccess = {
       success: true,
       data: {
         name: trimmedName,
@@ -64,6 +70,7 @@ const contactSchema = {
         website: '',
       },
     };
+    return result;
   },
 };
 const escapeHtml = (value: string) =>
@@ -109,7 +116,7 @@ export default async function handler(
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const parsedBody = contactSchema.safeParse(req.body);
+  const parsedBody = contactSchema.safeParse(req.body) as ContactSchemaSuccess | ContactSchemaFailure;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
   const requestOrigin = getRequestOrigin(req);
 
