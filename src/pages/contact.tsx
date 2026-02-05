@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', message: '', website: '' });
   const [status, setStatus] = useState<
     | { type: 'success' | 'error'; message: string }
     | null
@@ -137,6 +137,19 @@ const Contact = () => {
             placeholder="Write your message here"
             required
           ></textarea>
+        </div>
+
+        {/* Honeypot field for spam bots */}
+        <div className="hidden" aria-hidden="true">
+          <label htmlFor="website">Website</label>
+          <input
+            type="text"
+            id="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={form.website}
+            onChange={(e) => setForm({ ...form, website: e.target.value })}
+          />
         </div>
 
         {/* Submit Button */}

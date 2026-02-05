@@ -4,6 +4,7 @@ interface ContactRequestBody {
   name?: string;
   email?: string;
   message?: string;
+  website?: string; // honeypot
 }
 
 interface ContactResponse {
@@ -26,7 +27,7 @@ const contactSchema = {
       return { success: false, errors: { body: 'Request body must be a JSON object.' } };
     }
 
-    const { name, email, message } = payload as ContactRequestBody;
+    const { name, email, message, website } = payload as ContactRequestBody;
     const trimmedName = typeof name === 'string' ? name.trim() : '';
     const trimmedEmail = typeof email === 'string' ? email.trim() : '';
     const trimmedMessage = typeof message === 'string' ? message.trim() : '';
@@ -45,6 +46,11 @@ const contactSchema = {
       errors.message = 'Message is required.';
     }
 
+    // Honeypot check: bots often fill extra fields
+    if (typeof website === 'string' && website.trim().length > 0) {
+      errors.website = 'Spam detected.';
+    }
+
     if (Object.keys(errors).length > 0) {
       return { success: false, errors };
     }
@@ -55,6 +61,7 @@ const contactSchema = {
         name: trimmedName,
         email: trimmedEmail,
         message: trimmedMessage,
+        website: '',
       },
     };
   },
