@@ -59,7 +59,7 @@ const Home = () => {
   return (
     <div className="relative overflow-hidden">
       <Head>
-        <title>Gabriel Temtsen | Product Designer &amp; Developer</title>
+        <title>Gabriel Temtsen | Full‑Stack Developer</title>
         <meta
           name="description"
           content="Explore Gabriel Temtsen's portfolio of Next.js and TypeScript builds, featured projects, and design-forward product work."
