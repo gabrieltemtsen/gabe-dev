@@ -54,6 +54,8 @@ const Layout = ({ children }: LayoutProps) => {
             <ThemeToggle />
             <button
               aria-label="Toggle Menu"
+              aria-expanded={open}
+              aria-controls="mobile-menu"
               onClick={() => setOpen(!open)}
               className="sm:hidden p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
             >
@@ -62,7 +64,7 @@ const Layout = ({ children }: LayoutProps) => {
           </div>
         </div>
         {open && (
-          <div className="sm:hidden px-4 pb-4 space-y-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md" role="dialog" aria-label="Mobile navigation">
+          <div id="mobile-menu" className="sm:hidden px-4 pb-4 space-y-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md" role="dialog" aria-label="Mobile navigation">
             <nav className="flex flex-col space-y-2" aria-label="Mobile">
               {NAV_ITEMS.map((item) => (
                 <Link
