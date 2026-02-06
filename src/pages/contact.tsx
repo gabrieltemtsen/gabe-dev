@@ -67,6 +67,9 @@ const Contact = () => {
           name="description"
           content="Reach out to collaborate with Gabriel on product design, full-stack development, and Next.js builds."
         />
+        <meta property="og:title" content="Contact | Let’s Build Together" />
+        <meta property="og:description" content="Get in touch about product design, full‑stack work, and AI experiences." />
+        <meta property="og:image" content="/og.svg" />
         <link rel="canonical" href={`${getSiteUrl()}/contact`} />
       </Head>
       {/* Back Button */}
@@ -109,6 +112,7 @@ const Contact = () => {
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             placeholder="Enter your name"
+            autoComplete="name"
             required
           />
         </div>
@@ -123,6 +127,7 @@ const Contact = () => {
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             placeholder="Enter your email"
+            autoComplete="email"
             required
           />
         </div>
@@ -136,6 +141,7 @@ const Contact = () => {
             value={form.message}
             onChange={(e) => setForm({ ...form, message: e.target.value })}
             placeholder="Write your message here"
+            autoComplete="off"
             required
           ></textarea>
         </div>

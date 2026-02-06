@@ -18,6 +18,9 @@ const About = () => {
           name="description"
           content="Learn about Gabe's background in full-stack development, design-forward web experiences, and AI-powered product work."
         />
+        <meta property="og:title" content="About Gabe | Full-Stack Builder" />
+        <meta property="og:description" content="Background in full-stack, design systems, and AI-powered product work." />
+        <meta property="og:image" content="/og.svg" />
         <link rel="canonical" href={`${getSiteUrl()}/about`} />
       </Head>
       <button

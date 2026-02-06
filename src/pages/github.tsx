@@ -51,6 +51,9 @@ const GithubSummary = ({
           name="description"
           content="See Gabriel's GitHub highlights, key stats, and top technologies from recent open-source work."
         />
+        <meta property="og:title" content="GitHub Summary | Open Source Highlights" />
+        <meta property="og:description" content="Key stats, highlighted repos, and top technologies." />
+        <meta property="og:image" content="/og.svg" />
         <link rel="canonical" href={`${getSiteUrl()}/github`} />
       </Head>
       <button
