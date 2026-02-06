@@ -27,6 +27,9 @@ const Services = () => {
       <Head>
         <title>Services | Thoughtful Product Delivery</title>
         <meta name="description" content="Product-ready builds, delightful interfaces, and AI-infused workflows." />
+        <meta property="og:title" content="Services | Thoughtful Product Delivery" />
+        <meta property="og:description" content="Product-ready builds, delightful interfaces, and AI-infused workflows." />
+        <meta property="og:image" content="/og.svg" />
         <link rel="canonical" href={`${getSiteUrl()}/services`} />
       </Head>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.2),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(14,165,233,0.15),transparent_40%),radial-gradient(circle_at_30%_80%,rgba(236,72,153,0.15),transparent_40%)]" />

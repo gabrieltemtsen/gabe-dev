@@ -53,6 +53,9 @@ const Projects = () => {
           name="description"
           content="Browse Gabriel's recent Next.js projects, including Farcaster apps, DApps, and full-stack product builds."
         />
+        <meta property="og:title" content="Projects | Next.js Case Studies" />
+        <meta property="og:description" content="Explore Farcaster apps, DApps, and full‑stack builds." />
+        <meta property="og:image" content="/og.svg" />
         <link rel="canonical" href={`${getSiteUrl()}/projects`} />
         <script
           type="application/ld+json"

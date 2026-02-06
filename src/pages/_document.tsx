@@ -16,10 +16,10 @@ export default function Document() {
         <meta name="twitter:title" content="Gabe Dev | Open Source Dev" />
         <meta name="twitter:description" content="Design-forward builds in Next.js and TypeScript." />
         <meta name="twitter:image" content="/og.svg" />
-        <meta name="twitter:card" content="summary_large_image" />
         <link rel="canonical" href={process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com'} />
         <link rel="preload" href="/fonts/GeistVF.woff" as="font" type="font/woff" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/GeistMonoVF.woff" as="font" type="font/woff" crossOrigin="anonymous" />
+        <link rel="manifest" href="/site.webmanifest" />
         <script
           dangerouslySetInnerHTML={{
             __html: `
