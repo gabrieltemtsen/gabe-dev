@@ -32,6 +32,7 @@ const Layout = ({ children }: LayoutProps) => {
           <Link
             href="/"
             className="text-2xl font-bold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
+            aria-label="Home"
           >
             Gabe Dev
           </Link>
