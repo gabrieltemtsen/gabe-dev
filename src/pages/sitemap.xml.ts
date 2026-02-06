@@ -15,8 +15,11 @@ ${routes
   .join('\n')}
 </urlset>`;
 
-export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const envUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const baseUrl = envUrl && envUrl.startsWith('http')
+    ? envUrl
+    : `https://${req.headers.host ?? 'example.com'}`;
   const xml = buildSitemap(baseUrl);
   res.setHeader('Content-Type', 'application/xml');
   res.setHeader('Cache-Control', 's-maxage=86400, stale-while-revalidate');
