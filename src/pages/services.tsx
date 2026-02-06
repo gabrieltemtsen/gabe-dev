@@ -31,6 +31,21 @@ const Services = () => {
         <meta property="og:description" content="Product-ready builds, delightful interfaces, and AI-infused workflows." />
         <meta property="og:image" content="/og.svg" />
         <link rel="canonical" href={`${getSiteUrl()}/services`} />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'ItemList',
+              itemListElement: services.map((s, i) => ({
+                '@type': 'ListItem',
+                position: i + 1,
+                item: { '@type': 'Service', name: s.title, description: s.description },
+              })),
+            }),
+          }}
+        />
       </Head>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.2),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(14,165,233,0.15),transparent_40%),radial-gradient(circle_at_30%_80%,rgba(236,72,153,0.15),transparent_40%)]" />
       <div className="relative container mx-auto px-4 sm:px-6">

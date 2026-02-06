@@ -113,6 +113,7 @@ const Contact = () => {
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             placeholder="Enter your name"
             autoComplete="name"
+            maxLength={80}
             required
           />
         </div>
@@ -128,6 +129,7 @@ const Contact = () => {
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             placeholder="Enter your email"
             autoComplete="email"
+            maxLength={100}
             required
           />
         </div>
@@ -142,6 +144,7 @@ const Contact = () => {
             onChange={(e) => setForm({ ...form, message: e.target.value })}
             placeholder="Write your message here"
             autoComplete="off"
+            maxLength={2000}
             required
           ></textarea>
         </div>
@@ -180,19 +183,26 @@ const Contact = () => {
       {/* Social Links */}
       <div className="flex space-x-6 mt-8 text-gray-700 dark:text-gray-200">
         <a
-          href="https://github.com"
+          href="https://github.com/gabrieltemtsen"
+          target="_blank"
+          rel="me noopener noreferrer"
+          aria-label="Visit Gabriel's GitHub profile"
           className="hover:text-gray-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 rounded"
         >
           <Github className="w-6 h-6" />
         </a>
         <a
-          href="https://linkedin.com"
+          href="https://linkedin.com/in/gabrieltemtsen"
+          target="_blank"
+          rel="me noopener noreferrer"
+          aria-label="Visit Gabriel's LinkedIn profile"
           className="hover:text-gray-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 rounded"
         >
           <Linkedin className="w-6 h-6" />
         </a>
         <a
           href="mailto:gabrieltemtsen@gmail.com"
+          aria-label="Send an email to Gabriel"
           className="hover:text-gray-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 rounded"
         >
           <Mail className="w-6 h-6" />
