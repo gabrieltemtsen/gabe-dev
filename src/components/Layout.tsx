@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { ReactNode, useState } from 'react';
+import { useRouter } from 'next/router';
 import { Menu, X } from 'lucide-react';
 import AuroraBackground from './AuroraBackground';
 import UniverseBackground from './UniverseBackground';
@@ -14,7 +15,9 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   const year = new Date().getFullYear();
+  const router = useRouter();
   const [open, setOpen] = useState(false);
+  const isActive = (href: string) => router.pathname === href;
   return (
     <div className="relative min-h-screen flex flex-col bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground">
       <UniverseBackground />
@@ -31,24 +34,24 @@ const Layout = ({ children }: LayoutProps) => {
             Gabe Dev
           </Link>
           <nav className="hidden sm:flex space-x-6 ml-8" aria-label="Primary">
-            <Link
-              href="/about"
-              className="hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
-            >
-              About
-            </Link>
-            <Link href="/now" className="hover:text-blue-600">
-              Now
-            </Link>
-            <Link href="/projects" className="hover:text-blue-600">
-              Projects
-            </Link>
-            <Link href="/services" className="hover:text-blue-600">
-              Services
-            </Link>
-            <Link href="/contact" className="hover:text-blue-600">
-              Contact
-            </Link>
+            {[
+              { href: '/about', label: 'About' },
+              { href: '/now', label: 'Now' },
+              { href: '/projects', label: 'Projects' },
+              { href: '/services', label: 'Services' },
+              { href: '/contact', label: 'Contact' },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                className={`relative transition-colors hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 ${
+                  isActive(item.href) ? 'text-blue-600 after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:bg-blue-600/60' : ''
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
           <div className="flex items-center space-x-4 ml-auto">
             <ThemeToggle />
@@ -64,25 +67,23 @@ const Layout = ({ children }: LayoutProps) => {
         {open && (
           <div className="sm:hidden px-4 pb-4 space-y-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md" role="dialog" aria-label="Mobile navigation">
             <nav className="flex flex-col space-y-2" aria-label="Mobile">
-              <Link
-                href="/about"
-                className="hover:text-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
-                onClick={() => setOpen(false)}
-              >
-                About
-              </Link>
-              <Link href="/now" className="hover:text-blue-600" onClick={() => setOpen(false)}>
-                Now
-              </Link>
-              <Link href="/projects" className="hover:text-blue-600" onClick={() => setOpen(false)}>
-                Projects
-              </Link>
-              <Link href="/services" className="hover:text-blue-600" onClick={() => setOpen(false)}>
-                Services
-              </Link>
-              <Link href="/contact" className="hover:text-blue-600" onClick={() => setOpen(false)}>
-                Contact
-              </Link>
+              {[
+                { href: '/about', label: 'About' },
+                { href: '/now', label: 'Now' },
+                { href: '/projects', label: 'Projects' },
+                { href: '/services', label: 'Services' },
+                { href: '/contact', label: 'Contact' },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
+                  className={`hover:text-blue-600 ${isActive(item.href) ? 'text-blue-600 font-semibold' : ''}`}
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
             </nav>
           </div>
         )}

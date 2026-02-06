@@ -116,14 +116,14 @@ const Home = () => {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-2 rounded-full bg-white text-slate-900 px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5 hover:shadow-xl"
+                className="inline-flex items-center gap-2 rounded-full bg-white text-slate-900 px-6 py-3 text-sm font-semibold transition will-change-transform hover:-translate-y-0.5 hover:shadow-xl"
               >
                 View projects
                 <ArrowUpRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-white hover:bg-white/5"
+                className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition will-change-transform hover:-translate-y-0.5 hover:border-white hover:bg-white/5"
               >
                 Let&apos;s talk
                 <Mail className="h-4 w-4" />

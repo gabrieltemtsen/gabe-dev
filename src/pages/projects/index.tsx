@@ -93,7 +93,7 @@ const Projects = () => {
           <a
             key={index}
             href={project.link}
-            className="glass flex flex-col p-6 rounded-xl shadow-subtle hover:shadow-deep transition-transform duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
+            className="glass flex flex-col p-6 rounded-xl shadow-subtle transition will-change-transform duration-300 hover:shadow-deep hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
             target="_blank"
             rel="noopener noreferrer"
           >
