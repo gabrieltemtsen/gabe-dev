@@ -10,7 +10,7 @@ export default function BackToTop() {
     };
     window.addEventListener('scroll', onScroll, { passive: true } as AddEventListenerOptions);
     if (!reduceMotion) onScroll();
-    return () => window.removeEventListener('scroll', onScroll as any);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   const handleClick = () => {
@@ -30,4 +30,3 @@ export default function BackToTop() {
     </button>
   );
 }
-
