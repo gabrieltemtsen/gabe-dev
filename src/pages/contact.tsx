@@ -113,6 +113,7 @@ const Contact = () => {
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             placeholder="Enter your name"
             autoComplete="name"
+            maxLength={80}
             required
           />
         </div>
@@ -128,6 +129,7 @@ const Contact = () => {
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             placeholder="Enter your email"
             autoComplete="email"
+            maxLength={100}
             required
           />
         </div>
@@ -142,6 +144,7 @@ const Contact = () => {
             onChange={(e) => setForm({ ...form, message: e.target.value })}
             placeholder="Write your message here"
             autoComplete="off"
+            maxLength={2000}
             required
           ></textarea>
         </div>
