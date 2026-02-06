@@ -44,7 +44,7 @@ const Services = () => {
           {services.map((service) => (
             <div
               key={service.title}
-              className="glass rounded-3xl border border-white/20 bg-white/70 p-6 shadow-lg shadow-indigo-500/10 dark:bg-white/5"
+              className="glass rounded-3xl border border-white/20 bg-white/70 p-6 shadow-lg shadow-indigo-500/10 dark:bg-white/5 transition-transform will-change-transform hover:-translate-y-0.5 hover:shadow-xl"
             >
               <div className="flex items-center gap-3">
                 <div className="rounded-full bg-indigo-500/10 p-3 text-indigo-600 dark:text-indigo-200">

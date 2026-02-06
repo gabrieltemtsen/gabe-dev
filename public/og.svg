@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="50%" stop-color="#a21caf"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0b1020"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g>
+    <text x="80" y="260" fill="url(#g1)" font-family="Inter, ui-sans-serif, system-ui" font-size="96" font-weight="800">Gabe Dev</text>
+    <text x="80" y="340" fill="#c7d2fe" font-family="Inter, ui-sans-serif, system-ui" font-size="36" opacity="0.95">Design‑forward Next.js & TypeScript builds</text>
+    <text x="80" y="400" fill="#93c5fd" font-family="Inter, ui-sans-serif, system-ui" font-size="28" opacity="0.9">gabrieltemtsen.com</text>
+  </g>
+  <g opacity="0.1">
+    <circle cx="1000" cy="120" r="140" fill="url(#g1)"/>
+    <circle cx="1080" cy="520" r="90" fill="url(#g1)"/>
+  </g>
+</svg>

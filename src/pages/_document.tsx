@@ -11,7 +11,11 @@ export default function Document() {
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Gabe Dev | Open Source Dev" />
         <meta property="og:description" content="Design-forward builds in Next.js and TypeScript." />
-        <meta property="og:image" content="/gabbyProf.jpeg" />
+        <meta property="og:image" content="/og.svg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Gabe Dev | Open Source Dev" />
+        <meta name="twitter:description" content="Design-forward builds in Next.js and TypeScript." />
+        <meta name="twitter:image" content="/og.svg" />
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="canonical" href={process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com'} />
         <link rel="preload" href="/fonts/GeistVF.woff" as="font" type="font/woff" crossOrigin="anonymous" />
