@@ -40,16 +40,22 @@ const contactSchema = {
 
     if (!trimmedName) {
       errors.name = 'Name is required.';
+    } else if (trimmedName.length > 80) {
+      errors.name = 'Name is too long (max 80).';
     }
 
     if (!trimmedEmail) {
       errors.email = 'Email is required.';
     } else if (!isValidEmail(trimmedEmail)) {
       errors.email = 'Email must be valid.';
+    } else if (trimmedEmail.length > 100) {
+      errors.email = 'Email is too long (max 100).';
     }
 
     if (!trimmedMessage) {
       errors.message = 'Message is required.';
+    } else if (trimmedMessage.length > 2000) {
+      errors.message = 'Message is too long (max 2000).';
     }
 
     // Honeypot check: bots often fill extra fields
