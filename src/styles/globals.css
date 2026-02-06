@@ -33,6 +33,12 @@ body {
   }
 }
 
+/* Smooth scroll unless user prefers reduced motion */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 /* Loader */
 .dot-loader {
   display: flex;
@@ -102,4 +108,3 @@ body {
   background-size: 40px 40px, 80px 80px;
   background-position: 0 0, 20px 20px;
 }
-
