@@ -107,8 +107,8 @@ const Home = () => {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
                 Gabriel here—crafting fast, thoughtful products with a design-first mindset.
               </h1>
-              <p className="text-lg text-white/70">
-                I build end-to-end experiences in Next.js and TypeScript, pairing resilient architecture with polished
+              <p className="text-lg text-white/80">
+                I build end‑to‑end experiences in Next.js and TypeScript, pairing resilient architecture with polished
                 interactions. If you need a teammate who ships and sweats the details, let&apos;s talk.
               </p>
             </div>
