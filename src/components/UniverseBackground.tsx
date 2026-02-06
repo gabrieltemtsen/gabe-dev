@@ -20,9 +20,23 @@ const UniverseBackground: React.FC = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      // Render a static gradient background without star animation
+      const { innerWidth: w, innerHeight: h } = window;
+      canvas.width = w;
+      canvas.height = h;
+      return;
+    }
+
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const { innerWidth: w, innerHeight: h } = window;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
     resize();
@@ -35,7 +49,8 @@ const UniverseBackground: React.FC = () => {
       speed: Math.random() * 0.001 + 0.0005,
     });
 
-    const stars: Star[] = Array.from({ length: 200 }, createStar);
+    const starCount = Math.max(120, Math.floor(Math.min(window.innerWidth, window.innerHeight) / 6));
+    const stars: Star[] = Array.from({ length: starCount }, createStar);
 
     let animationId: number;
     const draw = () => {

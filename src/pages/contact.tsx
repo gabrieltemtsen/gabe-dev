@@ -1,10 +1,11 @@
 import Head from 'next/head';
+import { getSiteUrl } from '@/utils/site';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', message: '', website: '' });
   const [status, setStatus] = useState<
     | { type: 'success' | 'error'; message: string }
     | null
@@ -43,7 +44,7 @@ const Contact = () => {
         type: 'success',
         message: data.message || "Your message has been sent! I'll get back to you soon.",
       });
-      setForm({ name: '', email: '', message: '' });
+      setForm({ name: '', email: '', message: '', website: '' });
     } catch (error) {
       const message =
         error instanceof Error
@@ -66,6 +67,7 @@ const Contact = () => {
           name="description"
           content="Reach out to collaborate with Gabriel on product design, full-stack development, and Next.js builds."
         />
+        <link rel="canonical" href={`${getSiteUrl()}/contact`} />
       </Head>
       {/* Back Button */}
       <button
@@ -85,6 +87,8 @@ const Contact = () => {
           className={`mb-6 font-medium ${
             status.type === 'success' ? 'text-green-600' : 'text-red-600'
           }`}
+          role="status"
+          aria-live="polite"
         >
           {status.message}
         </div>
@@ -97,9 +101,10 @@ const Contact = () => {
       >
         {/* Name Input */}
         <div className="mb-6">
-          <label className="block text-gray-700 dark:text-gray-200 font-medium">Name</label>
+          <label htmlFor="name" className="block text-gray-700 dark:text-gray-200 font-medium">Name</label>
           <input
             type="text"
+            id="name"
             className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none bg-white dark:bg-gray-700 dark:text-gray-100"
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -110,9 +115,10 @@ const Contact = () => {
 
         {/* Email Input */}
         <div className="mb-6">
-          <label className="block text-gray-700 dark:text-gray-200 font-medium">Email</label>
+          <label htmlFor="email" className="block text-gray-700 dark:text-gray-200 font-medium">Email</label>
           <input
             type="email"
+            id="email"
             className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none bg-white dark:bg-gray-700 dark:text-gray-100"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -123,14 +129,28 @@ const Contact = () => {
 
         {/* Message Input */}
         <div className="mb-6">
-          <label className="block text-gray-700 dark:text-gray-200 font-medium">Message</label>
+          <label htmlFor="message" className="block text-gray-700 dark:text-gray-200 font-medium">Message</label>
           <textarea
+            id="message"
             className="w-full h-32 px-4 py-2 mt-1 border border-gray-300 rounded-lg focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none bg-white dark:bg-gray-700 dark:text-gray-100"
             value={form.message}
             onChange={(e) => setForm({ ...form, message: e.target.value })}
             placeholder="Write your message here"
             required
           ></textarea>
+        </div>
+
+        {/* Honeypot field for spam bots */}
+        <div className="hidden" aria-hidden="true">
+          <label htmlFor="website">Website</label>
+          <input
+            type="text"
+            id="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={form.website}
+            onChange={(e) => setForm({ ...form, website: e.target.value })}
+          />
         </div>
 
         {/* Submit Button */}

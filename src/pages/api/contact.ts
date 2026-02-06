@@ -4,6 +4,7 @@ interface ContactRequestBody {
   name?: string;
   email?: string;
   message?: string;
+  website?: string; // honeypot
 }
 
 interface ContactResponse {
@@ -18,6 +19,12 @@ type ContactApiResponse = ContactResponse | ContactErrorResponse;
 
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+type ContactSchemaSuccess = {
+  success: true;
+  data: { name: string; email: string; message: string; website: string };
+};
+type ContactSchemaFailure = { success: false; errors: Record<string, string> };
+
 const contactSchema = {
   safeParse: (payload: unknown) => {
     const errors: Record<string, string> = {};
@@ -26,7 +33,7 @@ const contactSchema = {
       return { success: false, errors: { body: 'Request body must be a JSON object.' } };
     }
 
-    const { name, email, message } = payload as ContactRequestBody;
+    const { name, email, message, website } = payload as ContactRequestBody;
     const trimmedName = typeof name === 'string' ? name.trim() : '';
     const trimmedEmail = typeof email === 'string' ? email.trim() : '';
     const trimmedMessage = typeof message === 'string' ? message.trim() : '';
@@ -45,18 +52,25 @@ const contactSchema = {
       errors.message = 'Message is required.';
     }
 
+    // Honeypot check: bots often fill extra fields
+    if (typeof website === 'string' && website.trim().length > 0) {
+      errors.website = 'Spam detected.';
+    }
+
     if (Object.keys(errors).length > 0) {
       return { success: false, errors };
     }
 
-    return {
+    const result: ContactSchemaSuccess = {
       success: true,
       data: {
         name: trimmedName,
         email: trimmedEmail,
         message: trimmedMessage,
+        website: '',
       },
     };
+    return result;
   },
 };
 const escapeHtml = (value: string) =>
@@ -102,15 +116,13 @@ export default async function handler(
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const parsedBody = contactSchema.safeParse(req.body);
+  const parsedBody = contactSchema.safeParse(req.body) as ContactSchemaSuccess | ContactSchemaFailure;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
   const requestOrigin = getRequestOrigin(req);
 
   if (siteUrl && requestOrigin && requestOrigin !== siteUrl) {
     return res.status(403).json({ message: 'Forbidden' });
   }
-
-  const { name = '', email = '', message = '' } = req.body as ContactRequestBody;
 
   if (!parsedBody.success) {
     return res

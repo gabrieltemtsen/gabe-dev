@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import DigitalRain from '@/components/DigitalRain';
+import { getSiteUrl } from '@/utils/site';
 
 const Home = () => {
   const stats = [
@@ -62,6 +63,28 @@ const Home = () => {
         <meta
           name="description"
           content="Explore Gabriel Temtsen's portfolio of Next.js and TypeScript builds, featured projects, and design-forward product work."
+        />
+        <link rel="canonical" href={getSiteUrl()} />
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Gabriel Temtsen',
+              url: getSiteUrl(),
+              sameAs: [
+                'https://github.com/gabrieltemtsen',
+                'https://www.warpcast.com/gabrieltemtsen',
+              ],
+              jobTitle: 'Full‑stack developer',
+              worksFor: {
+                '@type': 'Organization',
+                name: 'Independent',
+              },
+            }),
+          }}
         />
       </Head>
       <DigitalRain />

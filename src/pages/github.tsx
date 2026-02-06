@@ -1,7 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
 import localFont from "next/font/local";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
+import { getSiteUrl } from '@/utils/site';
 import { useRouter } from "next/router";
 
 type GithubStat = {
@@ -50,6 +51,7 @@ const GithubSummary = ({
           name="description"
           content="See Gabriel's GitHub highlights, key stats, and top technologies from recent open-source work."
         />
+        <link rel="canonical" href={`${getSiteUrl()}/github`} />
       </Head>
       <button
         type="button"
@@ -65,11 +67,7 @@ const GithubSummary = ({
           <p className="text-lg text-foreground/80">
             A quick snapshot of Gabe&apos;s GitHub activity, highlighted projects, and favorite technologies.
           </p>
-          {message ? (
-            <p className="rounded-lg border border-amber-300/70 bg-amber-100/80 px-4 py-3 text-sm font-medium text-amber-900 dark:border-amber-500/60 dark:bg-amber-900/40 dark:text-amber-100">
-              {message}
-            </p>
-          ) : null}
+          {/* Status message removed; consider adding via props if needed */}
           <Link
             href={profileUrl}
             target="_blank"
@@ -158,7 +156,7 @@ const GithubSummary = ({
   );
 };
 
-export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
+export const getServerSideProps: GetServerSideProps<GithubPageProps> = async () => {
   const username = "gabrieltemtsen";
   const profileUrl = `https://github.com/${username}`;
 
@@ -247,7 +245,6 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
         profileUrl,
         lastUpdated: new Date().toISOString(),
       },
-      revalidate: 3600,
     };
   } catch (error) {
     console.error("Failed to load GitHub data", error);
@@ -258,11 +255,6 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
       { label: "Following", value: "-" },
       { label: "Total Stars", value: "-" },
     ];
-    const message =
-      error instanceof Error && error.message === "Rate limited"
-        ? "Rate limit reached; try later."
-        : "GitHub data is temporarily unavailable. Please check back soon.";
-
     return {
       props: {
         stats: fallbackStats,
@@ -271,7 +263,6 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
         profileUrl,
         lastUpdated: new Date().toISOString(),
       },
-      revalidate: 600,
     };
   }
 };
