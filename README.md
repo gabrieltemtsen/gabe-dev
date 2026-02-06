@@ -38,3 +38,5 @@ Thank you for visiting my portfolio!
 
 - `robots.txt` lives in `public/robots.txt` and allows full crawling.
 - `sitemap.xml` is served dynamically from `/sitemap.xml` using `NEXT_PUBLIC_SITE_URL`.
+- OpenGraph/Twitter meta is set globally in `_document` and per-page where helpful. Default OG image at `public/og.svg`.
+- Optionally update `public/site.webmanifest` with icons if you want installable PWA behavior.

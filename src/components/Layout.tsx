@@ -6,6 +6,8 @@ import { Menu, X } from 'lucide-react';
 import AuroraBackground from './AuroraBackground';
 import UniverseBackground from './UniverseBackground';
 import ThemeToggle from './ThemeToggle';
+import { NAV_ITEMS } from '@/constants/nav';
+import BackToTop from './BackToTop';
 
 const ChatbotWidget = dynamic(() => import('./ChatbotWidget'), { ssr: false });
 
@@ -34,13 +36,7 @@ const Layout = ({ children }: LayoutProps) => {
             Gabe Dev
           </Link>
           <nav className="hidden sm:flex space-x-6 ml-8" aria-label="Primary">
-            {[
-              { href: '/about', label: 'About' },
-              { href: '/now', label: 'Now' },
-              { href: '/projects', label: 'Projects' },
-              { href: '/services', label: 'Services' },
-              { href: '/contact', label: 'Contact' },
-            ].map((item) => (
+            {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -67,13 +63,7 @@ const Layout = ({ children }: LayoutProps) => {
         {open && (
           <div className="sm:hidden px-4 pb-4 space-y-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md" role="dialog" aria-label="Mobile navigation">
             <nav className="flex flex-col space-y-2" aria-label="Mobile">
-              {[
-                { href: '/about', label: 'About' },
-                { href: '/now', label: 'Now' },
-                { href: '/projects', label: 'Projects' },
-                { href: '/services', label: 'Services' },
-                { href: '/contact', label: 'Contact' },
-              ].map((item) => (
+              {NAV_ITEMS.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -90,9 +80,10 @@ const Layout = ({ children }: LayoutProps) => {
       </header>
       <main id="content" className="flex-grow">{children}</main>
       <ChatbotWidget />
-      <footer className="glass text-center p-4 text-sm mt-auto">
+      <footer className="glass text-center p-4 text-sm mt-auto" role="contentinfo">
         &copy; {year} Gabriel Temtsen. All rights reserved.
       </footer>
+      <BackToTop />
     </div>
   );
 };
