@@ -84,7 +84,16 @@ const Layout = ({ children }: LayoutProps) => {
       <main id="content" className="flex-grow">{children}</main>
       <ChatbotWidget />
       <footer className="glass text-center p-4 text-sm mt-auto" role="contentinfo">
-        &copy; {year} Gabriel Temtsen. All rights reserved.
+        <div className="container mx-auto flex flex-col items-center gap-2">
+          <nav className="flex gap-4" aria-label="Footer">
+            <Link href="/privacy" className="hover:underline">Privacy</Link>
+            <Link href="/terms" className="hover:underline">Terms</Link>
+            <Link href="/uses" className="hover:underline">Uses</Link>
+            <a href="https://github.com/gabrieltemtsen" className="hover:underline" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://warpcast.com/gabrieltemtsen" className="hover:underline" target="_blank" rel="me noopener noreferrer">Farcaster</a>
+          </nav>
+          <div>&copy; {year} Gabriel Temtsen. All rights reserved.</div>
+        </div>
       </footer>
       <BackToTop />
     </div>

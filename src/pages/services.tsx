@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import Seo from '@/components/Seo';
 import Badge from '@/components/Badge';
+import SectionHeader from '@/components/SectionHeader';
 import { getSiteUrl } from '@/utils/site';
 import { ArrowUpRight, Palette, Rocket, Sparkles } from 'lucide-react';
 
@@ -51,12 +52,11 @@ const Services = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.2),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(14,165,233,0.15),transparent_40%),radial-gradient(circle_at_30%_80%,rgba(236,72,153,0.15),transparent_40%)]" />
       <div className="relative container mx-auto px-4 sm:px-6">
         <div className="max-w-3xl space-y-4">
-          <p className="text-sm uppercase tracking-[0.3em] text-indigo-500 dark:text-indigo-200">Services</p>
-          <h1 className="text-4xl sm:text-5xl font-bold">A focused studio for fast, thoughtful builds.</h1>
-          <p className="text-lg text-slate-600 dark:text-slate-300">
-            Partner with me for high-velocity product delivery, polished interfaces, and AI enhancements that feel
-            intuitive. Each engagement is scoped to keep momentum high and outcomes clear.
-          </p>
+          <SectionHeader
+            eyebrow="Services"
+            title="A focused studio for fast, thoughtful builds."
+            subtitle="Partner with me for high-velocity product delivery, polished interfaces, and AI enhancements that feel intuitive. Each engagement is scoped to keep momentum high and outcomes clear."
+          />
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">

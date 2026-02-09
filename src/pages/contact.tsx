@@ -96,6 +96,7 @@ const Contact = () => {
       <form
         className="glass p-8 rounded-lg w-full max-w-lg"
         onSubmit={handleSubmit}
+        aria-busy={isSubmitting}
       >
         {/* Name Input */}
         <div className="mb-6">
@@ -109,6 +110,7 @@ const Contact = () => {
             placeholder="Enter your name"
             autoComplete="name"
             maxLength={80}
+            disabled={isSubmitting}
             required
           />
         </div>
@@ -125,6 +127,7 @@ const Contact = () => {
             placeholder="Enter your email"
             autoComplete="email"
             maxLength={100}
+            disabled={isSubmitting}
             required
           />
         </div>
@@ -140,6 +143,7 @@ const Contact = () => {
             placeholder="Write your message here"
             autoComplete="off"
             maxLength={2000}
+            disabled={isSubmitting}
             required
           ></textarea>
         </div>
