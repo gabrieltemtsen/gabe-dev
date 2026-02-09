@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
+import Seo from "@/components/Seo";
 import { getSiteUrl } from '@/utils/site';
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -47,16 +48,12 @@ const Projects = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground">
+      <Seo
+        title="Projects | Next.js Case Studies"
+        description="Browse Gabriel's recent Next.js projects, including Farcaster apps, DApps, and full-stack product builds."
+        path="/projects"
+      />
       <Head>
-        <title>Projects | Next.js Case Studies</title>
-        <meta
-          name="description"
-          content="Browse Gabriel's recent Next.js projects, including Farcaster apps, DApps, and full-stack product builds."
-        />
-        <meta property="og:title" content="Projects | Next.js Case Studies" />
-        <meta property="og:description" content="Explore Farcaster apps, DApps, and full‑stack builds." />
-        <meta property="og:image" content="/og.svg" />
-        <link rel="canonical" href={`${getSiteUrl()}/projects`} />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger

@@ -1,0 +1,7 @@
+Team: Gabriel Temtsen (Design & Development)
+Twitter: @temtsen
+GitHub: https://github.com/gabrieltemtsen
+Location: Remote
+Standards: HTML5, CSS3, ES2020+, TypeScript, Next.js
+Components: Tailwind CSS, Lucide Icons
+Contact: gabrieltemtsen@gmail.com

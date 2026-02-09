@@ -18,18 +18,16 @@ const priorities = [
 
 import Head from 'next/head';
 import { getSiteUrl } from '@/utils/site';
+import Seo from '@/components/Seo';
 
 const Now = () => {
   return (
     <section className="relative overflow-hidden py-16">
-      <Head>
-        <title>Now | What I’m Focused On</title>
-        <meta name="description" content="Snapshot of current priorities and active work." />
-        <meta property="og:title" content="Now | What I’m Focused On" />
-        <meta property="og:description" content="Current priorities: polished client builds, personal AI tools, and sharing learning." />
-        <meta property="og:image" content="/og.svg" />
-        <link rel="canonical" href={`${getSiteUrl()}/now`} />
-      </Head>
+      <Seo
+        title="Now | What I’m Focused On"
+        description="Snapshot of current priorities and active work."
+        path="/now"
+      />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.12),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(14,165,233,0.12),transparent_40%),radial-gradient(circle_at_50%_80%,rgba(236,72,153,0.1),transparent_40%)]" />
       <div className="relative mx-auto flex w-full max-w-5xl flex-col gap-10 px-4 sm:px-6">
         <div className="glass rounded-3xl border border-white/20 p-8 shadow-xl">

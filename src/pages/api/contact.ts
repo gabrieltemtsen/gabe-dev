@@ -122,6 +122,12 @@ export default async function handler(
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
+  // basic rate limit by IP
+  const ip = (req.headers['x-forwarded-for'] as string | undefined)?.split(',')[0]?.trim() || req.socket.remoteAddress || undefined;
+  if (!rateLimitOk(ip)) {
+    return res.status(429).json({ message: 'Too many requests. Please try again shortly.' });
+  }
+
   const parsedBody = contactSchema.safeParse(req.body) as ContactSchemaSuccess | ContactSchemaFailure;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
   const requestOrigin = getRequestOrigin(req);
@@ -185,6 +191,23 @@ export default async function handler(
       .status(200)
       .json({ message: 'Your message has been sent successfully.' });
   } catch (error) {
+// naive in-memory rate limiter per IP (resets with server)
+const RATE_LIMIT_WINDOW_MS = 60_000; // 1 minute
+const RATE_LIMIT_MAX = 10; // 10 requests per minute
+const hits = new Map<string, { count: number; resetAt: number }>();
+
+const rateLimitOk = (ip: string | undefined) => {
+  const key = ip || 'unknown';
+  const now = Date.now();
+  const entry = hits.get(key);
+  if (!entry || now > entry.resetAt) {
+    hits.set(key, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return true;
+  }
+  if (entry.count >= RATE_LIMIT_MAX) return false;
+  entry.count += 1;
+  return true;
+};
     console.error('Unexpected error while sending contact message:', error);
     return res
       .status(500)

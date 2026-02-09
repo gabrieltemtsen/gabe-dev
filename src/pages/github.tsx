@@ -3,6 +3,7 @@ import Link from "next/link";
 import localFont from "next/font/local";
 import { GetServerSideProps } from "next";
 import { getSiteUrl } from '@/utils/site';
+import Seo from '@/components/Seo';
 import { useRouter } from "next/router";
 
 type GithubStat = {
@@ -45,17 +46,11 @@ const GithubSummary = ({
     <div
       className={`${geist.className} relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground px-4 py-12`}
     >
-      <Head>
-        <title>GitHub Summary | Open Source Highlights</title>
-        <meta
-          name="description"
-          content="See Gabriel's GitHub highlights, key stats, and top technologies from recent open-source work."
-        />
-        <meta property="og:title" content="GitHub Summary | Open Source Highlights" />
-        <meta property="og:description" content="Key stats, highlighted repos, and top technologies." />
-        <meta property="og:image" content="/og.svg" />
-        <link rel="canonical" href={`${getSiteUrl()}/github`} />
-      </Head>
+      <Seo
+        title="GitHub Summary | Open Source Highlights"
+        description="See Gabriel's GitHub highlights, key stats, and top technologies from recent open-source work."
+        path="/github"
+      />
       <button
         type="button"
         onClick={handleBack}

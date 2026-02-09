@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import Head from 'next/head';
+import Seo from '@/components/Seo';
+import Badge from '@/components/Badge';
 import { getSiteUrl } from '@/utils/site';
 import { ArrowUpRight, Palette, Rocket, Sparkles } from 'lucide-react';
 
@@ -24,13 +26,12 @@ const Services = () => {
 
   return (
     <div className="relative overflow-hidden py-16 sm:py-20">
+      <Seo
+        title="Services | Thoughtful Product Delivery"
+        description="Product-ready builds, delightful interfaces, and AI-infused workflows."
+        path="/services"
+      />
       <Head>
-        <title>Services | Thoughtful Product Delivery</title>
-        <meta name="description" content="Product-ready builds, delightful interfaces, and AI-infused workflows." />
-        <meta property="og:title" content="Services | Thoughtful Product Delivery" />
-        <meta property="og:description" content="Product-ready builds, delightful interfaces, and AI-infused workflows." />
-        <meta property="og:image" content="/og.svg" />
-        <link rel="canonical" href={`${getSiteUrl()}/services`} />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
@@ -72,15 +73,9 @@ const Services = () => {
               </div>
               <p className="mt-4 text-sm text-slate-600 dark:text-slate-300">{service.description}</p>
               <div className="mt-6 flex flex-wrap gap-2">
-                <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-200">
-                  Strategy
-                </span>
-                <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-200">
-                  Design
-                </span>
-                <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-200">
-                  Build
-                </span>
+                <Badge>Strategy</Badge>
+                <Badge>Design</Badge>
+                <Badge>Build</Badge>
               </div>
             </div>
           ))}
