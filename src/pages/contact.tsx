@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { getSiteUrl } from '@/utils/site';
+import Seo from '@/components/Seo';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
@@ -61,17 +62,11 @@ const Contact = () => {
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center px-4 bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <Head>
-        <title>Contact | Let&apos;s Build Together</title>
-        <meta
-          name="description"
-          content="Reach out to collaborate with Gabriel on product design, full-stack development, and Next.js builds."
-        />
-        <meta property="og:title" content="Contact | Let’s Build Together" />
-        <meta property="og:description" content="Get in touch about product design, full‑stack work, and AI experiences." />
-        <meta property="og:image" content="/og.svg" />
-        <link rel="canonical" href={`${getSiteUrl()}/contact`} />
-      </Head>
+      <Seo
+        title="Contact | Let’s Build Together"
+        description="Reach out to collaborate with Gabriel on product design, full-stack development, and Next.js builds."
+        path="/contact"
+      />
       {/* Back Button */}
       <button
         type="button"
@@ -101,6 +96,7 @@ const Contact = () => {
       <form
         className="glass p-8 rounded-lg w-full max-w-lg"
         onSubmit={handleSubmit}
+        aria-busy={isSubmitting}
       >
         {/* Name Input */}
         <div className="mb-6">
@@ -114,6 +110,7 @@ const Contact = () => {
             placeholder="Enter your name"
             autoComplete="name"
             maxLength={80}
+            disabled={isSubmitting}
             required
           />
         </div>
@@ -130,6 +127,7 @@ const Contact = () => {
             placeholder="Enter your email"
             autoComplete="email"
             maxLength={100}
+            disabled={isSubmitting}
             required
           />
         </div>
@@ -145,6 +143,7 @@ const Contact = () => {
             placeholder="Write your message here"
             autoComplete="off"
             maxLength={2000}
+            disabled={isSubmitting}
             required
           ></textarea>
         </div>

@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import Head from 'next/head';
+import Seo from '@/components/Seo';
+import Badge from '@/components/Badge';
+import SectionHeader from '@/components/SectionHeader';
 import { getSiteUrl } from '@/utils/site';
 import { ArrowUpRight, Palette, Rocket, Sparkles } from 'lucide-react';
 
@@ -24,13 +27,12 @@ const Services = () => {
 
   return (
     <div className="relative overflow-hidden py-16 sm:py-20">
+      <Seo
+        title="Services | Thoughtful Product Delivery"
+        description="Product-ready builds, delightful interfaces, and AI-infused workflows."
+        path="/services"
+      />
       <Head>
-        <title>Services | Thoughtful Product Delivery</title>
-        <meta name="description" content="Product-ready builds, delightful interfaces, and AI-infused workflows." />
-        <meta property="og:title" content="Services | Thoughtful Product Delivery" />
-        <meta property="og:description" content="Product-ready builds, delightful interfaces, and AI-infused workflows." />
-        <meta property="og:image" content="/og.svg" />
-        <link rel="canonical" href={`${getSiteUrl()}/services`} />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
@@ -50,12 +52,11 @@ const Services = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.2),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(14,165,233,0.15),transparent_40%),radial-gradient(circle_at_30%_80%,rgba(236,72,153,0.15),transparent_40%)]" />
       <div className="relative container mx-auto px-4 sm:px-6">
         <div className="max-w-3xl space-y-4">
-          <p className="text-sm uppercase tracking-[0.3em] text-indigo-500 dark:text-indigo-200">Services</p>
-          <h1 className="text-4xl sm:text-5xl font-bold">A focused studio for fast, thoughtful builds.</h1>
-          <p className="text-lg text-slate-600 dark:text-slate-300">
-            Partner with me for high-velocity product delivery, polished interfaces, and AI enhancements that feel
-            intuitive. Each engagement is scoped to keep momentum high and outcomes clear.
-          </p>
+          <SectionHeader
+            eyebrow="Services"
+            title="A focused studio for fast, thoughtful builds."
+            subtitle="Partner with me for high-velocity product delivery, polished interfaces, and AI enhancements that feel intuitive. Each engagement is scoped to keep momentum high and outcomes clear."
+          />
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
@@ -72,15 +73,9 @@ const Services = () => {
               </div>
               <p className="mt-4 text-sm text-slate-600 dark:text-slate-300">{service.description}</p>
               <div className="mt-6 flex flex-wrap gap-2">
-                <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-200">
-                  Strategy
-                </span>
-                <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-200">
-                  Design
-                </span>
-                <span className="rounded-full bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-200">
-                  Build
-                </span>
+                <Badge>Strategy</Badge>
+                <Badge>Design</Badge>
+                <Badge>Build</Badge>
               </div>
             </div>
           ))}

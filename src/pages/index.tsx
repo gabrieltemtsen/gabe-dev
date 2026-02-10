@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Seo from '@/components/Seo';
 import Link from 'next/link';
 import {
   ArrowUpRight,
@@ -58,13 +59,12 @@ const Home = () => {
 
   return (
     <div className="relative overflow-hidden">
+      <Seo
+        title="Gabriel Temtsen | Full‑Stack Developer"
+        description="Explore Gabriel Temtsen's portfolio of Next.js and TypeScript builds, featured projects, and design-forward product work."
+        path="/"
+      />
       <Head>
-        <title>Gabriel Temtsen | Full‑Stack Developer</title>
-        <meta
-          name="description"
-          content="Explore Gabriel Temtsen's portfolio of Next.js and TypeScript builds, featured projects, and design-forward product work."
-        />
-        <link rel="canonical" href={getSiteUrl()} />
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger

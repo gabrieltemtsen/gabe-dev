@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import localFont from "next/font/local";
 import { getSiteUrl } from '@/utils/site';
+import Seo from '@/components/Seo';
 
 const geist = localFont({ src: "./fonts/GeistVF.woff" });
 
@@ -12,17 +13,11 @@ const About = () => {
   };
   return (
     <div className={`${geist.className} relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground`}>
-      <Head>
-        <title>About Gabe | Full-Stack Builder</title>
-        <meta
-          name="description"
-          content="Learn about Gabe's background in full-stack development, design-forward web experiences, and AI-powered product work."
-        />
-        <meta property="og:title" content="About Gabe | Full-Stack Builder" />
-        <meta property="og:description" content="Background in full-stack, design systems, and AI-powered product work." />
-        <meta property="og:image" content="/og.svg" />
-        <link rel="canonical" href={`${getSiteUrl()}/about`} />
-      </Head>
+      <Seo
+        title="About Gabe | Full-Stack Builder"
+        description="Learn about Gabe's background in full-stack development, design-forward web experiences, and AI-powered product work."
+        path="/about"
+      />
       <button
         type="button"
         onClick={handleBack}
