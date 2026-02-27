@@ -18,6 +18,9 @@ interface ContactErrorResponse extends ContactResponse {
 type ContactApiResponse = ContactResponse | ContactErrorResponse;
 
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const MAX_NAME_LENGTH = 100;
+const MAX_EMAIL_LENGTH = 254;
+const MAX_MESSAGE_LENGTH = 2000;
 
 type ContactSchemaSuccess = {
   success: true;
@@ -122,21 +125,30 @@ export default async function handler(
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  // basic rate limit by IP
-  const ip = (req.headers['x-forwarded-for'] as string | undefined)?.split(',')[0]?.trim() || req.socket.remoteAddress || undefined;
-  if (!rateLimitOk(ip)) {
-    return res.status(429).json({ message: 'Too many requests. Please try again shortly.' });
+  const { name = '', email = '', message = '' } = req.body as ContactRequestBody;
+  const trimmedName = name.trim();
+  const trimmedEmail = email.trim();
+  const trimmedMessage = message.trim();
+
+  if (trimmedName.length > MAX_NAME_LENGTH) {
+    return res.status(400).json({
+      message: `Name must be ${MAX_NAME_LENGTH} characters or fewer.`,
+    });
   }
 
-  const parsedBody = contactSchema.safeParse(req.body) as ContactSchemaSuccess | ContactSchemaFailure;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-  const requestOrigin = getRequestOrigin(req);
-
-  if (siteUrl && requestOrigin && requestOrigin !== siteUrl) {
-    return res.status(403).json({ message: 'Forbidden' });
+  if (trimmedEmail.length > MAX_EMAIL_LENGTH) {
+    return res.status(400).json({
+      message: `Email must be ${MAX_EMAIL_LENGTH} characters or fewer.`,
+    });
   }
 
-  if (!parsedBody.success) {
+  if (trimmedMessage.length > MAX_MESSAGE_LENGTH) {
+    return res.status(400).json({
+      message: `Message must be ${MAX_MESSAGE_LENGTH} characters or fewer.`,
+    });
+  }
+
+  if (!trimmedName || !trimmedMessage || !isValidEmail(trimmedEmail)) {
     return res
       .status(400)
       .json({ message: 'Invalid request body.', errors: parsedBody.errors });
@@ -171,11 +183,11 @@ export default async function handler(
       },
       body: JSON.stringify({
         from: 'Portfolio Contact Form <onboarding@resend.dev>',
-        to: [contactReceiverEmail],
-        reply_to: email,
-        subject: `New message from ${name}`,
-        html: buildEmailHtml(safeName, safeEmail, safeMessage),
-        text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`,
+        to: ['gabrieltemtsen@gmail.com'],
+        reply_to: trimmedEmail,
+        subject: `New message from ${trimmedName}`,
+        html: buildEmailHtml(trimmedName, trimmedEmail, trimmedMessage),
+        text: `Name: ${trimmedName}\nEmail: ${trimmedEmail}\nMessage:\n${trimmedMessage}`,
       }),
     });
 
