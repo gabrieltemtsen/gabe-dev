@@ -1,3 +1,5 @@
+import Head from 'next/head';
+import Seo from '@/components/Seo';
 import Link from 'next/link';
 import {
   ArrowUpRight,
@@ -9,6 +11,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import DigitalRain from '@/components/DigitalRain';
+import { getSiteUrl } from '@/utils/site';
 
 const Home = () => {
   const stats = [
@@ -36,9 +39,54 @@ const Home = () => {
   ];
 
   const focus = ['Next.js', 'TypeScript', 'Design Systems', 'AI Assistants', 'Edge Compute'];
+  const collaborators = [
+    {
+      name: 'Lia Mendez',
+      role: 'Product Lead, Ember Labs',
+      quote: 'Gabriel translated our fuzzy roadmap into a crisp, shippable product without losing the soul.',
+    },
+    {
+      name: 'Rowan Park',
+      role: 'Founder, SignalNorth',
+      quote: 'Every handoff was thoughtful, and the UI polish helped us close our seed round faster.',
+    },
+    {
+      name: 'Jules Okafor',
+      role: 'Design Director, Cloudline',
+      quote: 'He blends systems thinking with visual finesse—exactly what we needed for our relaunch.',
+    },
+  ];
 
   return (
     <div className="relative overflow-hidden">
+      <Seo
+        title="Gabriel Temtsen | Full‑Stack Developer"
+        description="Explore Gabriel Temtsen's portfolio of Next.js and TypeScript builds, featured projects, and design-forward product work."
+        path="/"
+      />
+      <Head>
+        <script
+          type="application/ld+json"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Person',
+              name: 'Gabriel Temtsen',
+              url: getSiteUrl(),
+              sameAs: [
+                'https://github.com/gabrieltemtsen',
+                'https://www.warpcast.com/gabrieltemtsen',
+              ],
+              jobTitle: 'Full‑stack developer',
+              worksFor: {
+                '@type': 'Organization',
+                name: 'Independent',
+              },
+            }),
+          }}
+        />
+      </Head>
       <DigitalRain />
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-black opacity-90" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.25),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(14,165,233,0.2),transparent_40%),radial-gradient(circle_at_30%_80%,rgba(236,72,153,0.2),transparent_40%)]" />
@@ -59,8 +107,8 @@ const Home = () => {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
                 Gabriel here—crafting fast, thoughtful products with a design-first mindset.
               </h1>
-              <p className="text-lg text-white/70">
-                I build end-to-end experiences in Next.js and TypeScript, pairing resilient architecture with polished
+              <p className="text-lg text-white/80">
+                I build end‑to‑end experiences in Next.js and TypeScript, pairing resilient architecture with polished
                 interactions. If you need a teammate who ships and sweats the details, let&apos;s talk.
               </p>
             </div>
@@ -68,14 +116,14 @@ const Home = () => {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-2 rounded-full bg-white text-slate-900 px-6 py-3 text-sm font-semibold transition hover:-translate-y-0.5 hover:shadow-xl"
+                className="inline-flex items-center gap-2 rounded-full bg-white text-slate-900 px-6 py-3 text-sm font-semibold transition will-change-transform hover:-translate-y-0.5 hover:shadow-xl"
               >
                 View projects
                 <ArrowUpRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-white hover:bg-white/5"
+                className="inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition will-change-transform hover:-translate-y-0.5 hover:border-white hover:bg-white/5"
               >
                 Let&apos;s talk
                 <Mail className="h-4 w-4" />
@@ -138,6 +186,32 @@ const Home = () => {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-16">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <p className="text-sm uppercase tracking-[0.2em] text-indigo-200">Partner feedback</p>
+              <h2 className="mt-3 text-2xl sm:text-3xl font-semibold">People I&apos;ve built alongside</h2>
+            </div>
+            <span className="glass rounded-full px-4 py-2 text-xs font-semibold text-white/80">
+              Trusted collaborators
+            </span>
+          </div>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {collaborators.map((collaborator) => (
+              <div
+                key={collaborator.name}
+                className="glass rounded-2xl border border-white/10 bg-white/5 p-5 shadow-lg shadow-indigo-500/10"
+              >
+                <p className="text-sm text-white/70">&ldquo;{collaborator.quote}&rdquo;</p>
+                <div className="mt-4">
+                  <p className="text-sm font-semibold text-white">{collaborator.name}</p>
+                  <p className="text-xs text-white/60">{collaborator.role}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 

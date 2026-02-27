@@ -24,8 +24,19 @@ To enable the contact form to send emails, create a `.env.local` file using the 
 
 ```
 RESEND_API_KEY=your_resend_api_key
+CONTACT_RECEIVER_EMAIL=gabrieltemtsen@gmail.com
+NEXT_PUBLIC_SITE_URL=https://your-deployed-domain.example
 ```
 
-Deployments must include this environment variable so the API route can deliver messages to `gabrieltemtsen@gmail.com`.
+Deployments must include these variables so the API route can deliver messages to `gabrieltemtsen@gmail.com` and to generate canonical links and the dynamic sitemap.
+
+Also set `NEXT_PUBLIC_SITE_URL` to the canonical site origin (used to protect the contact API and for SEO canonical links).
 
 Thank you for visiting my portfolio!
+
+## SEO
+
+- `robots.txt` lives in `public/robots.txt` and allows full crawling.
+- `sitemap.xml` is served dynamically from `/sitemap.xml` using `NEXT_PUBLIC_SITE_URL`.
+- OpenGraph/Twitter meta is set globally in `_document` and per-page where helpful. Default OG image at `public/og.svg`.
+- Optionally update `public/site.webmanifest` with icons if you want installable PWA behavior.

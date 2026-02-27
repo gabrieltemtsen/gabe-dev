@@ -1,6 +1,9 @@
+import Head from "next/head";
 import Link from "next/link";
 import localFont from "next/font/local";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
+import { getSiteUrl } from '@/utils/site';
+import Seo from '@/components/Seo';
 import { useRouter } from "next/router";
 
 type GithubStat = {
@@ -21,6 +24,7 @@ type GithubPageProps = {
   highlightedProjects: HighlightedProject[];
   topTechnologies: string[];
   profileUrl: string;
+  lastUpdated: string;
 };
 
 const geist = localFont({ src: "./fonts/GeistVF.woff" });
@@ -30,6 +34,7 @@ const GithubSummary = ({
   highlightedProjects,
   topTechnologies,
   profileUrl,
+  lastUpdated,
 }: GithubPageProps) => {
   const router = useRouter();
 
@@ -41,7 +46,13 @@ const GithubSummary = ({
     <div
       className={`${geist.className} relative flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-indigo-200 via-white to-cyan-200 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-foreground px-4 py-12`}
     >
+      <Seo
+        title="GitHub Summary | Open Source Highlights"
+        description="See Gabriel's GitHub highlights, key stats, and top technologies from recent open-source work."
+        path="/github"
+      />
       <button
+        type="button"
         onClick={handleBack}
         className="bg-gray-300 hover:bg-gray-400 text-black dark:text-gray-900 px-4 py-2 rounded mb-6 self-start"
       >
@@ -54,6 +65,7 @@ const GithubSummary = ({
           <p className="text-lg text-foreground/80">
             A quick snapshot of Gabe&apos;s GitHub activity, highlighted projects, and favorite technologies.
           </p>
+          {/* Status message removed; consider adding via props if needed */}
           <Link
             href={profileUrl}
             target="_blank"
@@ -62,6 +74,9 @@ const GithubSummary = ({
           >
             Visit GitHub Profile
           </Link>
+          <p className="text-sm text-foreground/70">
+            Last updated: <span className="font-medium">{lastUpdated}</span>
+          </p>
         </header>
 
         <section>
@@ -139,7 +154,7 @@ const GithubSummary = ({
   );
 };
 
-export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
+export const getServerSideProps: GetServerSideProps<GithubPageProps> = async () => {
   const username = "gabrieltemtsen";
   const profileUrl = `https://github.com/${username}`;
 
@@ -156,11 +171,22 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
       }),
     ]);
 
+    const isRateLimitedResponse = (response: Response) =>
+      response.status === 403 && response.headers.get("x-ratelimit-remaining") === "0";
+
+    const isRateLimited = isRateLimitedResponse(userResponse) || isRateLimitedResponse(reposResponse);
+
     if (!userResponse.ok) {
+      if (isRateLimited) {
+        throw new Error("Rate limited");
+      }
       throw new Error(`Failed to fetch user profile: ${userResponse.status}`);
     }
 
     if (!reposResponse.ok) {
+      if (isRateLimited) {
+        throw new Error("Rate limited");
+      }
       throw new Error(`Failed to fetch repositories: ${reposResponse.status}`);
     }
 
@@ -215,8 +241,8 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
         highlightedProjects,
         topTechnologies,
         profileUrl,
+        lastUpdated: new Date().toISOString(),
       },
-      revalidate: 3600,
     };
   } catch (error) {
     console.error("Failed to load GitHub data", error);
@@ -227,15 +253,14 @@ export const getStaticProps: GetStaticProps<GithubPageProps> = async () => {
       { label: "Following", value: "-" },
       { label: "Total Stars", value: "-" },
     ];
-
     return {
       props: {
         stats: fallbackStats,
         highlightedProjects: [],
         topTechnologies: [],
         profileUrl,
+        lastUpdated: new Date().toISOString(),
       },
-      revalidate: 600,
     };
   }
 };
