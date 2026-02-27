@@ -11,6 +11,9 @@ interface ContactResponse {
 }
 
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const MAX_NAME_LENGTH = 100;
+const MAX_EMAIL_LENGTH = 254;
+const MAX_MESSAGE_LENGTH = 2000;
 
 const buildEmailHtml = (name: string, email: string, message: string) => `
   <div style="font-family: Arial, sans-serif; font-size: 16px; color: #1f2937;">
@@ -32,8 +35,29 @@ export default async function handler(
   }
 
   const { name = '', email = '', message = '' } = req.body as ContactRequestBody;
+  const trimmedName = name.trim();
+  const trimmedEmail = email.trim();
+  const trimmedMessage = message.trim();
 
-  if (!name.trim() || !message.trim() || !isValidEmail(email)) {
+  if (trimmedName.length > MAX_NAME_LENGTH) {
+    return res.status(400).json({
+      message: `Name must be ${MAX_NAME_LENGTH} characters or fewer.`,
+    });
+  }
+
+  if (trimmedEmail.length > MAX_EMAIL_LENGTH) {
+    return res.status(400).json({
+      message: `Email must be ${MAX_EMAIL_LENGTH} characters or fewer.`,
+    });
+  }
+
+  if (trimmedMessage.length > MAX_MESSAGE_LENGTH) {
+    return res.status(400).json({
+      message: `Message must be ${MAX_MESSAGE_LENGTH} characters or fewer.`,
+    });
+  }
+
+  if (!trimmedName || !trimmedMessage || !isValidEmail(trimmedEmail)) {
     return res
       .status(400)
       .json({ message: 'Please provide a valid name, email, and message.' });
@@ -58,10 +82,10 @@ export default async function handler(
       body: JSON.stringify({
         from: 'Portfolio Contact Form <onboarding@resend.dev>',
         to: ['gabrieltemtsen@gmail.com'],
-        reply_to: email,
-        subject: `New message from ${name}`,
-        html: buildEmailHtml(name, email, message),
-        text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`,
+        reply_to: trimmedEmail,
+        subject: `New message from ${trimmedName}`,
+        html: buildEmailHtml(trimmedName, trimmedEmail, trimmedMessage),
+        text: `Name: ${trimmedName}\nEmail: ${trimmedEmail}\nMessage:\n${trimmedMessage}`,
       }),
     });
 
